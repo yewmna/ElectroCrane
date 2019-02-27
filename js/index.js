@@ -29,15 +29,14 @@ var lightningLine;
 var random = Math.random;
 var floor  = Math.floor;
 var font;
-
+var team;
 function preload() {
   font = loadFont('Montserrat-Light.ttf');
 }
 
 function init() {
     document.body.style.backgroundColor = BACKGROUND_COLOR;
-    canvas = document.getElementById('c');
-    
+    canvas = document.getElementById('c');    
     document.addEventListener('resize', resize, false);
     resize();
     var i;    
@@ -137,17 +136,28 @@ function keyDown(e) {
 
 var timeout = setInterval(reloadChat, 500);    
     function reloadChat () {
+          team = location.hash.substr(1);
+
                  $.ajax({
-          url: "brightness.txt",
+          url: "data.json",
          contentType: "application/json; charset=utf-8",
           type: 'GET',
 
         }).done(function(response){
-            document.getElementById("textplace").innerHTML = Math.floor(response) + "A";
-            high = response;
+            var parsed = JSON.parse(response);
+            var length = Object.keys(parsed).length;
+            console.log(team);
+            for(var i = 0; i<length; i++){
+                var reading_1 = parsed[team]['readings']['arduino_1'];
+                var reading_2 = parsed[team]['readings']['arduino_2'];
+            }
+            if (typeof reading_1 == 'undefined'){
+                console.log("No connected laptop");
+            }else{
+                 high = reading_1;
+            }
+            document.getElementById("textplace").innerHTML = Math.floor(high) + "A";
             CHILD_NUM = Math.floor(high);
-           // console.log(CHILD_NUM);
-              //lightningLine=[];
     var childNoiseOpts     = { base: 60, amplitude: 0.8, speed: 0.08 };
     var lightningNoiseOpts = { base: 90, amplitude: 0.2, speed: 0.05 };
 

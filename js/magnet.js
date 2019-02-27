@@ -235,17 +235,28 @@ $(c).on('mousedown', mousedown);
 
 var timeout = setInterval(reloadChat, 500);    
     function reloadChat () {
+                var team = location.hash.substr(1);
+
                  $.ajax({
-          url: "brightness.txt",
+           url: "data.json",
          contentType: "application/json; charset=utf-8",
           type: 'GET',
 
         }).done(function(response){
-           // document.getElementById("textplace").innerHTML = Math.floor(response) + "A";
-           size=response*20;
-           mRadius = size;
-            console.log(response);
-              //lightningLine=[];
+            var parsed = JSON.parse(response);
+            var length = Object.keys(parsed).length;
+            console.log(team);
+            for(var i = 0; i<length; i++){
+                var reading_1 = parsed[team]['readings']['arduino_1'];
+                var reading_2 = parsed[team]['readings']['arduino_2'];
+            }
+            if (typeof reading_1 == 'undefined'){
+                console.log("No connected laptop");
+            }else{
+            size=reading_1*20;
+            mRadius = size;
+            console.log(reading_1);
+            }
 
 
 

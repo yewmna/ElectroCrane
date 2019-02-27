@@ -10,10 +10,12 @@ var inData;   // variable to hold the input data from Arduino
 var minWidth = 600;   //set min width and height for canvas
 var minHeight = 400;
 var width, height;    // actual width and height for the sketch
+var team;
 
 var mynewVal;
 function setup() {
   // set the canvas to match the window size
+  team = location.hash.substr(1);
   if (window.innerWidth > minWidth){
     width = window.innerWidth;
   } else {
@@ -48,13 +50,13 @@ var timeout = setInterval(passVal, 500);
 function passVal(){
   if(inData){
       var val = map(inData, 0, 255, 1, 20);   // map input to the correct range of brightness  
-      console.log(val);  
         $.ajax({
   url: "./saveJSON.php",
   type: 'POST',
   ContentType: 'application/json',
-  data: {'data': val}
+  data: {'data1': val,'data2': val,'namey':team}
 }).done(function(response){
+  console.log(response);
 }).fail(function(jqXHR, textStatus, errorThrown){
 });
   }
