@@ -1,3 +1,145 @@
+/*
+ * Tweaked Bootstrap CSS
+ */
+
+/* Links */
+a,
+a:focus,
+a:hover {
+  color: #fff;
+}
+
+p{
+  margin-bottom: 2rem;
+}
+
+#play,
+#play:hover,
+#play:focus {
+      width: 180px;
+    padding: 10px;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 600;
+     background-color: #e84444;
+    border: 1px solid #e84444;
+    box-shadow: -6px 0px 0px #922b2b, -6px 6px 0px #922b2b, -6px 12px 0px #922b2b, 0px 12px 0px #922b2b;
+    border-radius: 0px;
+    color: #fff;
+    cursor: pointer;
+}
+
+#track,
+#track:hover,
+#track:focus {
+    width: 180px;
+    padding: 10px;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 600;
+    background-color: #2196F3;
+    border: 1px solid #2295f3;
+    box-shadow: -6px 0px 0px #165f9a, -6px 6px 0px #165f9a, -6px 12px 0px #165f9a, 0px 12px 0px #165f9a;
+    border-radius: 0px;
+    color: #fff;
+    cursor: pointer;
+}
+
+a#track:active {
+    box-shadow: none;
+    transition: 0.1s;
+    margin-left: -6px;
+    margin-bottom: -6px;
+    width: 186px;
+    padding: 16px;
+}
+
+a#play:active {
+    box-shadow: none;
+    transition: 0.1s;
+    margin-left: -6px;
+    margin-bottom: -6px;
+    width: 186px;
+    padding: 16px;
+}
+
+input#team_name {
+    border: 0px;
+    outline: none !important;
+    padding: 5px 10px 5px 10px;
+}
+
+label {
+    display: block;
+    color: #332a0c;
+    font-size: 17pt;
+}
+/*
+ * Base structure
+ */
+
+html,
+body {
+  height: 100%;
+  background-color: #ffd039;
+  font-family: 'Montserrat', sans-serif !important;
+
+}
+
+body {
+  display: -ms-flexbox;
+  display: flex;
+  color: #000;
+}
+
+.cover-container {
+  max-width: 42em;
+}
+/*
+ * Header
+ */
+.masthead {
+  margin-bottom: 2rem;
+}
+
+.masthead-brand {
+  margin-bottom: 0;
+    color: #fff;
+    font-weight: 700;
+    text-align: center;
+}
+
+
+@media (min-width: 48em) {
+  .masthead-brand {
+    float: left;
+  }
+  .nav-masthead {
+    float: right;
+  }
+}
+
+
+/*
+ * Cover
+ */
+.cover {
+  padding: 0 1.5rem;
+}
+.cover .btn-lg {
+  padding: .75rem 1.25rem;
+  font-weight: 700;
+}
+
+
+/*
+ * Footer
+ */
+.mastfoot {
+  color: rgba(255, 255, 255, .5);
+}
+
+
 body {
   margin: 0;
   padding: 0;
