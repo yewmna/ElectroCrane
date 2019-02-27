@@ -67,11 +67,12 @@ input#team_name {
     border: 0px;
     outline: none !important;
     padding: 5px 10px 5px 10px;
+    border: 1px solid #000;
 }
 
 label {
     display: block;
-    color: #332a0c;
+    color: #343434;
     font-size: 17pt;
 }
 /*
@@ -81,7 +82,7 @@ label {
 html,
 body {
   height: 100%;
-  background-color: #ffd039;
+  background-color: #ffdc0c;
   font-family: 'Montserrat', sans-serif !important;
 
 }
@@ -91,55 +92,48 @@ body {
   display: flex;
   color: #000;
 }
-
-.cover-container {
-  max-width: 42em;
-}
 /*
  * Header
  */
 .masthead {
-  margin-bottom: 2rem;
+  margin-bottom: 0rem;
+
 }
 
 .masthead-brand {
   margin-bottom: 0;
-    color: #fff;
+    color: #000;
     font-weight: 700;
     text-align: center;
+        padding-bottom: 10px;
+
 }
 
-
-@media (min-width: 48em) {
-  .masthead-brand {
-    float: left;
-  }
-  .nav-masthead {
-    float: right;
-  }
+header p{
+font-size: 12pt;
+color:#343434;
 }
 
-
-/*
- * Cover
- */
-.cover {
-  padding: 0 1.5rem;
-}
-.cover .btn-lg {
-  padding: .75rem 1.25rem;
-  font-weight: 700;
+.instruction_p{
+    position: absolute;
+    left: -315px;
+    top: 18px;
+    width: 300px;
 }
 
-
-/*
- * Footer
- */
-.mastfoot {
-  color: rgba(255, 255, 255, .5);
+.instruction_t{
+    position: absolute;
+    left: 190px;
+    top: -18px;
+    width: 300px;
+}
+#helper{
+    width: 180px;
+    margin: 0 auto;
+    position: relative;
 }
 
-
+/* other */
 body {
   margin: 0;
   padding: 0;
