@@ -26,8 +26,6 @@
 		    "readings" => array(
 		    "arduino_1" => $data_v1,
 		    "arduino_2" => $data_v2,
-		  ),
-		    "trials" => array(
 		  )
 		  )
 		);

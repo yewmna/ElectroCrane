@@ -10,7 +10,7 @@ var high=1;
 var DRAG_POINT_NUM = 2;
 var DRAG_POINT_MAX_NUM = 2; //Drag points
 var CHILD_NUM = 1*high; //Baby lightnings
-var BACKGROUND_COLOR = 'rgba(255, 235, 88, 1)';
+var BACKGROUND_COLOR = 'rgba(255, 220, 12, 1)';
 var sensor_val;
 // Color
 var H = 195;
@@ -37,6 +37,7 @@ function preload() {
 function init() {
     document.body.style.backgroundColor = BACKGROUND_COLOR;
     canvas = document.getElementById('c');    
+    console.log("here!");
     document.addEventListener('resize', resize, false);
     resize();
     var i;    
@@ -69,7 +70,7 @@ function init() {
 
 function resize(e) {
     canvas.width = window.innerWidth;
-    canvas.height = 450;
+    canvas.height = (window.innerHeight*1.2);
     context = canvas.getContext('2d');
     context.lineCap = 'butt';
 }
@@ -677,6 +678,9 @@ var Color = new function() {
 // Init
 
 window.onload = function() {
+    var team = location.hash.substr(1);
+document.getElementById('tracking-script').src = "track.html#" + team;  
+document.getElementById('tracking-script').contentWindow.location.reload();
     init();
 };
 
