@@ -1,0 +1,13 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+canvas {
+  display: block;
+}
+
+#textplace {
+    color: #baf4ff;
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+    z-index: 9999;
+}

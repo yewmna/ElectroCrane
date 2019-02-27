@@ -1,0 +1,82 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 18pt;
+  font-family: 'Montserrat', sans-serif !important;
+
+}
+
+canvas #c {
+      margin-top: 18px !important;
+}
+#mytext{
+  padding-left:20px;
+}
+
+#textplace {
+    width: 100vw;
+    text-align: left;
+    color: #2196F3;
+    font-family: 'Montserrat', sans-serif;
+    z-index: 9999;
+    font-size: 4em;
+    padding-bottom: 20px;
+        font-weight: 700;
+                    padding-left: 62px;
+
+
+
+}
+
+#textplace2 {
+    width: 100vw;
+    text-align: left;
+    color: #302e1f;
+    font-family: 'Montserrat', sans-serif;
+    z-index: 9999;
+    font-size: 7em;
+    padding-bottom: 20px;
+    font-weight: 700;
+    margin-left: 32px;
+
+}
+
+
+#demo{
+      width: 100vw;
+    text-align: left;
+        color: #ff3a3a;
+    font-family: 'Montserrat', sans-serif;
+    z-index: 9999;
+    font-size: 4em;
+    padding-bottom: 20px;
+        font-weight: 700;
+            padding-left: 80px;
+}
+
+#remaining{
+      color: #595959;
+    font-family: 'Montserrat', sans-serif;
+    z-index: 9999;
+    font-size: 1.8em;
+    padding-bottom: 20px;
+    font-weight: 300;
+}
+
+div#lookatthetime {
+    position: absolute;
+    left: 80vw;
+    top: 15px;
+}
+
+#electricalcurrent{
+width: 100vw;
+    text-align: left;
+    color: #595959;
+    font-family: 'Montserrat', sans-serif;
+    z-index: 9999;
+    font-size: 1.8em;
+    padding-bottom: 20px;
+    font-weight: 300;
+
+}

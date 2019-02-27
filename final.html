@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+
+<head>
+  <title>Electricity Effects with CSS and Javascript </title>
+      <link rel="stylesheet" href="css/style.css?v=1">
+
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,900" rel="stylesheet">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+<style>
+body{
+	background: #feeb57;
+  margin:0 auto;
+}
+iframe {
+    display: block;
+    float: left;
+    height: 100vh;
+    overflow: hidden !important;
+}
+
+#nail{
+  width: 65vw;
+    position: absolute;
+    left: 20vw;
+    top: 8vh;
+}
+
+</style>  
+</head>
+
+<body>
+
+
+<iframe scrolling="no" id="electricity" style="width:100vw" src="lightning.html"></iframe>
+<iframe scrolling="no" id="magnet" style="width:60vw; position:absolute; left:20vw;" src="magnet.html"></iframe>
+<img id="nail" src="nail.png"/>
+
+<div id="mytext" style="    position: absolute;
+    left: 41vw;
+    top: 17px;">
+<div id="electricalcurrent">Magnetic Field</div>
+<div id="textplace2">76</div>
+</div>
+<div id="lookatthetime">
+   <div id="remaining">Time Remaining</div>
+  <div id="demo"></div>
+</div>
+<script>
+var timeLeft = 90;
+    var elem = document.getElementById('demo');
+    
+    var timerId = setInterval(countdown, 1000);
+    
+    function countdown() {
+      if (timeLeft == 0) {
+        clearTimeout(timerId);
+        doSomething();
+      } else {
+        elem.innerHTML = timeLeft;
+        timeLeft--;
+      }
+    }
+</script>
+</body>
+
+</html>
