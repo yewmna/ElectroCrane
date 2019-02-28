@@ -16,6 +16,8 @@ p{
 @media only screen and (max-width: 800px) {
     a#play{
       display: inline-block;
+          text-decoration: none;
+
     }
     #play,
 #play:hover,
@@ -179,7 +181,7 @@ canvas #c {
     color: #302e1f;
     font-family: 'Montserrat', sans-serif;
     z-index: 9999;
-    font-size: 7em;
+    font-size: 5em;
     padding-bottom: 20px;
     font-weight: 700;
     margin-left: 32px;
@@ -211,7 +213,7 @@ canvas #c {
 
 div#lookatthetime {
     position: absolute;
-    left: 80vw;
+        left: 75vw;
     top: 15px;
 }
 
@@ -223,5 +225,30 @@ div#lookatthetime {
     font-size: 1.8em;
     padding-bottom: 20px;
     font-weight: 300;
+
+}
+
+div#overlay {
+    width: 100vw;
+    position: absolute;
+    height: 100vh;
+    z-index: 1;
+    background: #2196F3;
+    margin: 0 auto;
+    text-align: center;
+    display:none;
+}
+
+#end-message{
+    color: #fff;
+    font-size: 18pt;
+    margin-top: 40vh;
+        line-height: 163%;
+
+}
+
+#end-message h2{
+        font-size: 14pt;
+            padding-bottom: 30px;
 
 }

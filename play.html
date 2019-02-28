@@ -33,15 +33,24 @@ iframe {
 <body>
 
 
-<iframe scrolling="no" id="electricity" style="width:100vw" src="lightning.html"></iframe>
-<iframe scrolling="no" id="magnet" style="width:60vw; position:absolute; left:20vw;" src="magnet.html"></iframe>
+<!--<iframe scrolling="no" id="electricity" style="width:100vw" src="lightning.html"></iframe>-->
+<!--<iframe scrolling="no" id="magnet" style="width:60vw; position:absolute; left:20vw;" src="magnet.html"></iframe>-->
 <img id="nail" src="img/nail.png"/>
 <div id="lookatthetime">
    <div id="remaining">Time Remaining</div>
   <div id="demo"></div>
 </div>
+<div id="overlay">
+  <div id="end-message">
+    <h1>Time's Up!</h1>
+    <h2>Log your results on the compooper.</h2>
+    <p class="lead">
+      <a id="play" href="#" class="btn btn-lg btn-secondary">Play Again</a>
+    </p>
+  </div>
+</div>
 <script>
-var timeLeft = 90;
+var timeLeft = 5;
     var elem = document.getElementById('demo');
     
     var timerId = setInterval(countdown, 1000);
@@ -49,12 +58,19 @@ var timeLeft = 90;
     function countdown() {
       if (timeLeft == 0) {
         clearTimeout(timerId);
-        doSomething();
+        var overlay = document.getElementById("overlay");
+        overlay.style.display = "block";
       } else {
         elem.innerHTML = timeLeft;
         timeLeft--;
       }
     }
+</script>
+    <script>
+    $( "#play" ).click(function() {
+      var team = $("#team_name").val().split(' ').join('_');
+      window.location.replace("play.html#"+team);
+    });
 </script>
 </body>
 

@@ -254,7 +254,7 @@ var timeout = setInterval(reloadChat, 500);
             }else{
             size=reading_1*20;
             mRadius = size;
-            document.getElementById("magneticfield_value").innerHTML = Math.floor(size) + "Tesla";
+            document.getElementById("magneticfield_value").innerHTML = Math.floor(size);
             }
 
 
