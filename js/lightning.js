@@ -1,4 +1,6 @@
 
+//Tweaked code from https://codepen.io/alidz/pen/gPvYoK
+
 // forked from akm2's "Lightning Points (Lightning 2)" https://jsdo.it/akm2/amk0
 /**
  * Using PerlinNoise class

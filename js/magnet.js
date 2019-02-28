@@ -1,3 +1,6 @@
+//Tweaked code from https://codepen.io/jackrugile/pen/DozAd
+
+
 /* requestAnimationFrame */
 // Color
 var H = 46;
@@ -295,7 +298,7 @@ var timeout = setInterval(reloadChat, 500);
             if (typeof reading_1 == 'undefined'){
                 console.log("No connected laptop");
             }else{
-            size=reading_1*20;
+            size=reading_1*10;
             mRadius = size;
 
             document.getElementById("magneticfield_value").innerHTML = Math.floor(size);

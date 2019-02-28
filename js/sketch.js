@@ -1,3 +1,5 @@
+//Tweaked code from https://github.com/yyyuan/arduino-p5-tutorial-starter
+
 /*
 References for these codes:
 https://itp.nyu.edu/physcomp/labs/labs-serial-communication/lab-serial-input-to-the-p5-js-ide/
@@ -7,8 +9,8 @@ var serial;   // variable to hold an instance of the serialport library
 var portName = '/dev/cu.usbmodem14101';    // fill in your serial port name here
 var inData;   // variable to hold the input data from Arduino
 
-var minWidth = 600;   //set min width and height for canvas
-var minHeight = 400;
+var minWidth = 10;   //set min width and height for canvas
+var minHeight = 10;
 var width, height;    // actual width and height for the sketch
 var team;
 
@@ -28,8 +30,6 @@ function setup() {
   }
 
   //set up canvas
-  createCanvas(width, height);
-  noStroke();
 
   //set up communication port
   serial = new p5.SerialPort();       // make a new instance of the serialport library
@@ -49,7 +49,10 @@ var timeout = setInterval(passVal, 500);
 
 function passVal(){
   if(inData){
-      var val = map(inData, 0, 255, 1, 20);   // map input to the correct range of brightness  
+      var val = map(inData, 0, 255, 1, 20);   // map input to the correct range of brightness 
+    document.getElementById("current").innerHTML = Math.floor(val);
+    document.getElementById("mf").innerHTML = Math.floor(val*10);
+ 
         $.ajax({
   url: "./saveJSON.php",
   type: 'POST',
