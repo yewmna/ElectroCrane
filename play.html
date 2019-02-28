@@ -32,6 +32,33 @@ iframe {
     top: 8vh;
 }
 
+#play,
+#play:hover,
+#play:focus {
+      width: 180px;
+    padding: 10px;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 600;
+     background-color: #e84444;
+    border: 1px solid #e84444;
+    box-shadow: -6px 0px 0px #922b2b, -6px 6px 0px #922b2b, -6px 12px 0px #922b2b, 0px 12px 0px #922b2b;
+    border-radius: 0px;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+    
+
+a#play:active {
+    box-shadow: none;
+    transition: 0.1s;
+    margin-left: -6px;
+    margin-bottom: -6px;
+    width: 186px;
+    padding: 16px;
+}
 </style>  
 </head>
 
@@ -65,20 +92,19 @@ var timeLeft = 60;
         clearTimeout(timerId);
         var overlay = document.getElementById("overlay");
         overlay.style.display = "block";
+        $("#play").show();
       } else {
         elem.innerHTML = timeLeft;
         timeLeft--;
       }
     }
 </script>
-    <script>
-      /mobile/i.test(navigator.userAgent) && !location.hash && setTimeout(function() {
-  window.scrollTo(0, 1);
-}, 1000);​
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
+    <script>
     $( "#play" ).click(function() {
-      var team = $("#team_name").val().split(' ').join('_');
-      window.location.replace("play.html#"+team);
+      window.location.reload();
+
     });
 </script>
 </body>
