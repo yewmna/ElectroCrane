@@ -245,7 +245,6 @@ var timeout = setInterval(reloadChat, 500);
         }).done(function(response){
             var parsed = JSON.parse(response);
             var length = Object.keys(parsed).length;
-            console.log(team);
             for(var i = 0; i<length; i++){
                 var reading_1 = parsed[team]['readings']['arduino_1'];
                 var reading_2 = parsed[team]['readings']['arduino_2'];
@@ -255,7 +254,7 @@ var timeout = setInterval(reloadChat, 500);
             }else{
             size=reading_1*20;
             mRadius = size;
-            console.log(reading_1);
+            document.getElementById("magneticfield_value").innerHTML = Math.floor(size) + "Tesla";
             }
 
 

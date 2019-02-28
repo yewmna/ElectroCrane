@@ -37,7 +37,6 @@ function preload() {
 function init() {
     document.body.style.backgroundColor = BACKGROUND_COLOR;
     canvas = document.getElementById('c');    
-    console.log("here!");
     document.addEventListener('resize', resize, false);
     resize();
     var i;    
@@ -147,7 +146,6 @@ var timeout = setInterval(reloadChat, 500);
         }).done(function(response){
             var parsed = JSON.parse(response);
             var length = Object.keys(parsed).length;
-            console.log(team);
             for(var i = 0; i<length; i++){
                 var reading_1 = parsed[team]['readings']['arduino_1'];
                 var reading_2 = parsed[team]['readings']['arduino_2'];

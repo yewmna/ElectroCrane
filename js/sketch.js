@@ -49,7 +49,6 @@ var timeout = setInterval(passVal, 500);
 
 function passVal(){
   if(inData){
-  //  console.log("data!");
       var val = map(inData, 0, 255, 1, 20);   // map input to the correct range of brightness  
         $.ajax({
   url: "./saveJSON.php",
@@ -57,7 +56,6 @@ function passVal(){
   ContentType: 'application/json',
   data: {'data1': val,'data2': val,'namey':team}
 }).done(function(response){
-//  console.log(response);
 }).fail(function(jqXHR, textStatus, errorThrown){
 });
   }

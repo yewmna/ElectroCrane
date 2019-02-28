@@ -13,11 +13,9 @@ p{
   margin-bottom: 2rem;
 }
 
-@media only screen and (max-width: 0px) {
+@media only screen and (max-width: 800px) {
     a#play{
       display: inline-block;
-
-
     }
     #play,
 #play:hover,
@@ -50,8 +48,7 @@ a#play:active {
 }
 
 #play{
-         display:none;
-
+   display:none;
 }
 
 #track,
@@ -98,7 +95,6 @@ label {
 html,
 body {
   height: 100%;
-  background-color: #ffdc0c;
   font-family: 'Montserrat', sans-serif !important;
 
 }
@@ -177,6 +173,18 @@ canvas #c {
     margin-left: 32px;
 
 }
+
+#magneticfield_value{
+        text-align: left;
+    color: #302e1f;
+    font-family: 'Montserrat', sans-serif;
+    z-index: 9999;
+    font-size: 7em;
+    padding-bottom: 20px;
+    font-weight: 700;
+    margin-left: 32px;
+}
+
 #mytext {
     position: absolute;
 }
