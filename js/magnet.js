@@ -135,43 +135,81 @@ var renderThings = function(){
 }
     
 var renderMRadius = function(){
-  ctx.beginPath();
- // ctx.arc(mx, my, mRadius, 0, pi2, false);
- ctx.ellipse(mx, my, mRadius, mRadius-100, Math.PI*2, 0, 2 * Math.PI);
-
-
-  if(attract){
-        var _currentAlpha = 0;
-        var gradient = ctx.createRadialGradient(mx, my, mRadius / 3, mx, my, mRadius);
-        gradient.addColorStop(0, Color.setAlphaToString(_currentAlpha));
+        ctx.beginPath();
+        ctx.ellipse(mx, my, mRadius, mRadius-250, Math.PI*2, 0, 2 * Math.PI);
+        var _currentAlpha = 0.6;
+        var gradient = ctx.createRadialGradient(mx, my, mRadius/2, mx, my, 0, mRadius);
+        gradient.addColorStop(1, Color.setAlphaToString(_currentAlpha));
         gradient.addColorStop(1, Color.setAlphaToString(0));
         ctx.fillStyle = gradient;
         ctx.beginPath();
         ctx.moveTo(mx + mRadius, my);
-        ctx.ellipse(mx, my, mRadius, mRadius-100, Math.PI*2, 0, 2 * Math.PI);
+        ctx.ellipse(mx, my, mRadius, mRadius-250, Math.PI*2, 0, 2 * Math.PI);
         ctx.fill(); 
-  } else {
-        var _currentAlpha = 0;
-        var gradient = ctx.createRadialGradient(mx, my, mRadius / 3, mx, my, mRadius);
-        gradient.addColorStop(0, Color.setAlphaToString(_currentAlpha));
-        gradient.addColorStop(1, Color.setAlphaToString(0));
-        ctx.fillStyle = gradient;
-        ctx.beginPath();
-        ctx.moveTo(mx + mRadius, my);
-        //ctx.arc(mx, my, mRadius, 0, Math.PI * 2, false);
-        ctx.ellipse(mx, my, mRadius, mRadius-100, Math.PI*2, 0, 2 * Math.PI);
-        ctx.fill(); 
-  }
 
+        ctx.beginPath();
+        ctx.ellipse(mx, my, mRadius, mRadius-200, Math.PI*2, 0, 2 * Math.PI);
         var _currentAlpha = 0.5;
         var gradient = ctx.createRadialGradient(mx, my, mRadius/2, mx, my, 0, mRadius);
-        gradient.addColorStop(0, Color.setAlphaToString(_currentAlpha));
-        gradient.addColorStop(0.5, Color.setAlphaToString(0));
+        gradient.addColorStop(1, Color.setAlphaToString(_currentAlpha));
+        gradient.addColorStop(1, Color.setAlphaToString(0));
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.moveTo(mx + mRadius, my);
+        ctx.ellipse(mx, my, mRadius, mRadius-200, Math.PI*2, 0, 2 * Math.PI);
+        ctx.fill(); 
+
+        ctx.beginPath();
+        ctx.ellipse(mx, my, mRadius, mRadius-150, Math.PI*2, 0, 2 * Math.PI);
+        var _currentAlpha = 0.4;
+        var gradient = ctx.createRadialGradient(mx, my, mRadius/2, mx, my, 0, mRadius);
+        gradient.addColorStop(1, Color.setAlphaToString(_currentAlpha));
+        gradient.addColorStop(1, Color.setAlphaToString(0));
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.moveTo(mx + mRadius, my);
+        ctx.ellipse(mx, my, mRadius, mRadius-150, Math.PI*2, 0, 2 * Math.PI);
+        ctx.fill(); 
+
+        
+        ctx.beginPath();
+        ctx.ellipse(mx, my, mRadius, mRadius-100, Math.PI*2, 0, 2 * Math.PI);
+        var _currentAlpha = 0.3;
+        var gradient = ctx.createRadialGradient(mx, my, mRadius/2, mx, my, 0, mRadius);
+        gradient.addColorStop(1, Color.setAlphaToString(_currentAlpha));
+        gradient.addColorStop(1, Color.setAlphaToString(0));
         ctx.fillStyle = gradient;
         ctx.beginPath();
         ctx.moveTo(mx + mRadius, my);
         ctx.ellipse(mx, my, mRadius, mRadius-100, Math.PI*2, 0, 2 * Math.PI);
         ctx.fill(); 
+
+        ctx.beginPath();
+        ctx.ellipse(mx, my, mRadius, mRadius-50, Math.PI*2, 0, 2 * Math.PI);
+        var _currentAlpha = 0.2;
+        var gradient = ctx.createRadialGradient(mx, my, mRadius/2, mx, my, 0, mRadius);
+        gradient.addColorStop(1, Color.setAlphaToString(_currentAlpha));
+        gradient.addColorStop(1, Color.setAlphaToString(0));
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.moveTo(mx + mRadius, my);
+        ctx.ellipse(mx, my, mRadius, mRadius-50, Math.PI*2, 0, 2 * Math.PI);
+        ctx.fill(); 
+
+        ctx.beginPath();
+        ctx.ellipse(mx, my, mRadius, mRadius, Math.PI*2, 0, 2 * Math.PI);
+
+        var _currentAlpha = 0.1;
+        var gradient = ctx.createRadialGradient(mx, my, mRadius/2, mx, my, 0, mRadius);
+        gradient.addColorStop(1, Color.setAlphaToString(_currentAlpha));
+        gradient.addColorStop(1, Color.setAlphaToString(0));
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.moveTo(mx + mRadius, my);
+        ctx.ellipse(mx, my, mRadius, mRadius, Math.PI*2, 0, 2 * Math.PI);
+        ctx.fill(); 
+        
+
 }
 
 
