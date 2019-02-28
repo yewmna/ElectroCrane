@@ -104,15 +104,15 @@ Thing.prototype = {
       ctx.stroke();
 ctx.fill();
 
-    ctx.fillStyle = 'hsla(210, 1%, 57%, 1)';//Color of circles when not attracted
-    ctx.strokeStyle = 'hsla(210, 1%, 57%, 1)';//Color of circles when not attracted
+    ctx.fillStyle = 'hsla(51, 89%, 45%, 1)';//Color of circles when not attracted
+    ctx.strokeStyle = 'hsla(51, 89%, 45%, 1)';//Color of circles when not attracted
     if(this.affected){
       if(attract){
-        ctx.fillStyle = 'hsla(210, 1%, 57%, 1)';//Color of circles when attracted
-        ctx.strokeStyle = 'hsla(210, 1%, 57%, 1)'; //Color of circles when attracted
+        ctx.fillStyle = 'hsla(51, 89%, 45%, 1)';//Color of circles when attracted
+        ctx.strokeStyle = 'hsla(51, 89%, 45%, 1)'; //Color of circles when attracted
       } else {
-        ctx.fillStyle = 'hsla(210, 1%, 57%, 1)';
-        ctx.strokeStyle = 'hsla(210, 1%, 57%, 1)';
+        ctx.fillStyle = 'hsla(51, 89%, 45%, 1)';
+        ctx.strokeStyle = 'hsla(51, 89%, 45%, 1)';
       }
     }    
     ctx.fill();
@@ -135,8 +135,13 @@ var renderThings = function(){
 }
     
 var renderMRadius = function(){
+        if(mRadius>265){
+          mRadius = 265;
+        }
+
+
         ctx.beginPath();
-        ctx.ellipse(mx, my, mRadius, mRadius-250, Math.PI*2, 0, 2 * Math.PI);
+        ctx.ellipse(mx, my, mRadius, mRadius/2.25, Math.PI*2, 0, 2 * Math.PI);
         var _currentAlpha = 0.6;
         var gradient = ctx.createRadialGradient(mx, my, mRadius/2, mx, my, 0, mRadius);
         gradient.addColorStop(1, Color.setAlphaToString(_currentAlpha));
@@ -144,11 +149,11 @@ var renderMRadius = function(){
         ctx.fillStyle = gradient;
         ctx.beginPath();
         ctx.moveTo(mx + mRadius, my);
-        ctx.ellipse(mx, my, mRadius, mRadius-250, Math.PI*2, 0, 2 * Math.PI);
+        ctx.ellipse(mx, my, mRadius, mRadius/2.25, Math.PI*2, 0, 2 * Math.PI);
         ctx.fill(); 
 
         ctx.beginPath();
-        ctx.ellipse(mx, my, mRadius, mRadius-200, Math.PI*2, 0, 2 * Math.PI);
+        ctx.ellipse(mx, my, mRadius, mRadius/2, Math.PI*2, 0, 2 * Math.PI);
         var _currentAlpha = 0.5;
         var gradient = ctx.createRadialGradient(mx, my, mRadius/2, mx, my, 0, mRadius);
         gradient.addColorStop(1, Color.setAlphaToString(_currentAlpha));
@@ -156,11 +161,11 @@ var renderMRadius = function(){
         ctx.fillStyle = gradient;
         ctx.beginPath();
         ctx.moveTo(mx + mRadius, my);
-        ctx.ellipse(mx, my, mRadius, mRadius-200, Math.PI*2, 0, 2 * Math.PI);
+        ctx.ellipse(mx, my, mRadius, mRadius/2, Math.PI*2, 0, 2 * Math.PI);
         ctx.fill(); 
 
         ctx.beginPath();
-        ctx.ellipse(mx, my, mRadius, mRadius-150, Math.PI*2, 0, 2 * Math.PI);
+        ctx.ellipse(mx, my, mRadius, mRadius/1.75, Math.PI*2, 0, 2 * Math.PI);
         var _currentAlpha = 0.4;
         var gradient = ctx.createRadialGradient(mx, my, mRadius/2, mx, my, 0, mRadius);
         gradient.addColorStop(1, Color.setAlphaToString(_currentAlpha));
@@ -168,12 +173,12 @@ var renderMRadius = function(){
         ctx.fillStyle = gradient;
         ctx.beginPath();
         ctx.moveTo(mx + mRadius, my);
-        ctx.ellipse(mx, my, mRadius, mRadius-150, Math.PI*2, 0, 2 * Math.PI);
+        ctx.ellipse(mx, my, mRadius, mRadius/1.75, Math.PI*2, 0, 2 * Math.PI);
         ctx.fill(); 
 
         
         ctx.beginPath();
-        ctx.ellipse(mx, my, mRadius, mRadius-100, Math.PI*2, 0, 2 * Math.PI);
+        ctx.ellipse(mx, my, mRadius, mRadius/1.5, Math.PI*2, 0, 2 * Math.PI);
         var _currentAlpha = 0.3;
         var gradient = ctx.createRadialGradient(mx, my, mRadius/2, mx, my, 0, mRadius);
         gradient.addColorStop(1, Color.setAlphaToString(_currentAlpha));
@@ -181,11 +186,11 @@ var renderMRadius = function(){
         ctx.fillStyle = gradient;
         ctx.beginPath();
         ctx.moveTo(mx + mRadius, my);
-        ctx.ellipse(mx, my, mRadius, mRadius-100, Math.PI*2, 0, 2 * Math.PI);
+        ctx.ellipse(mx, my, mRadius, mRadius/1.5, Math.PI*2, 0, 2 * Math.PI);
         ctx.fill(); 
 
         ctx.beginPath();
-        ctx.ellipse(mx, my, mRadius, mRadius-50, Math.PI*2, 0, 2 * Math.PI);
+        ctx.ellipse(mx, my, mRadius, mRadius/1.25, Math.PI*2, 0, 2 * Math.PI);
         var _currentAlpha = 0.2;
         var gradient = ctx.createRadialGradient(mx, my, mRadius/2, mx, my, 0, mRadius);
         gradient.addColorStop(1, Color.setAlphaToString(_currentAlpha));
@@ -193,7 +198,7 @@ var renderMRadius = function(){
         ctx.fillStyle = gradient;
         ctx.beginPath();
         ctx.moveTo(mx + mRadius, my);
-        ctx.ellipse(mx, my, mRadius, mRadius-50, Math.PI*2, 0, 2 * Math.PI);
+        ctx.ellipse(mx, my, mRadius, mRadius/1.25, Math.PI*2, 0, 2 * Math.PI);
         ctx.fill(); 
 
         ctx.beginPath();
@@ -292,6 +297,7 @@ var timeout = setInterval(reloadChat, 500);
             }else{
             size=reading_1*20;
             mRadius = size;
+
             document.getElementById("magneticfield_value").innerHTML = Math.floor(size);
             }
 

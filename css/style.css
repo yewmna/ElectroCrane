@@ -152,10 +152,10 @@ canvas #c {
 
 #textplace {
     text-align: left;
-    color: #2196F3;
+    color: #2f2e1f;
     font-family: 'Montserrat', sans-serif;
     z-index: 9999;
-    font-size: 4em;
+    font-size: 3em;
     padding-bottom: 20px;
         font-weight: 700;
                     padding-left: 62px;
@@ -169,7 +169,7 @@ canvas #c {
     color: #302e1f;
     font-family: 'Montserrat', sans-serif;
     z-index: 9999;
-    font-size: 7em;
+    font-size: 3em;
     padding-bottom: 20px;
     font-weight: 700;
     margin-left: 32px;
@@ -181,7 +181,7 @@ canvas #c {
     color: #302e1f;
     font-family: 'Montserrat', sans-serif;
     z-index: 9999;
-    font-size: 5em;
+    font-size: 3em;
     padding-bottom: 20px;
     font-weight: 700;
     margin-left: 32px;
@@ -196,17 +196,17 @@ canvas #c {
         color: #ff3a3a;
     font-family: 'Montserrat', sans-serif;
     z-index: 9999;
-    font-size: 4em;
+    font-size: 3em;
     padding-bottom: 20px;
         font-weight: 700;
             padding-left: 80px;
 }
 
 #remaining{
-      color: #595959;
+      color: #302e1f;
     font-family: 'Montserrat', sans-serif;
     z-index: 9999;
-    font-size: 1.8em;
+    font-size: 1.4em;
     padding-bottom: 20px;
     font-weight: 300;
 }
@@ -219,10 +219,10 @@ div#lookatthetime {
 
 #electricalcurrent{
     text-align: left;
-    color: #595959;
+    color: #302e1f;
     font-family: 'Montserrat', sans-serif;
     z-index: 9999;
-    font-size: 1.8em;
+    font-size: 1.4em;
     padding-bottom: 20px;
     font-weight: 300;
 
@@ -251,4 +251,11 @@ div#overlay {
         font-size: 14pt;
             padding-bottom: 30px;
 
+}
+
+
+#sensor{
+    width:100vw;
+    background:  #e84444;
+    height:50px;
 }

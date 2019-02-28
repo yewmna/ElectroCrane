@@ -146,6 +146,8 @@ var timeout = setInterval(reloadChat, 500);
         }).done(function(response){
             var parsed = JSON.parse(response);
             var length = Object.keys(parsed).length;
+            var team = location.hash.substr(1);
+
             for(var i = 0; i<length; i++){
                 var reading_1 = parsed[team]['readings']['arduino_1'];
                 var reading_2 = parsed[team]['readings']['arduino_2'];
