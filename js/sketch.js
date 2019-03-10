@@ -6,13 +6,15 @@ https://itp.nyu.edu/physcomp/labs/labs-serial-communication/lab-serial-input-to-
 https://itp.nyu.edu/physcomp/labs/labs-serial-communication/lab-serial-input-to-the-p5-js-ide/
 */
 var serial;   // variable to hold an instance of the serialport library
-var portName = '/dev/cu.usbmodem14101';    // fill in your serial port name here
+var portName = '/dev/cu.usbmodem14301';    // fill in your serial port name here
 var inData;   // variable to hold the input data from Arduino
 
 var minWidth = 10;   //set min width and height for canvas
 var minHeight = 10;
 var width, height;    // actual width and height for the sketch
 var team;
+var current;
+var magnetic_field;
 
 var mynewVal;
 function setup() {
@@ -48,25 +50,33 @@ var timeout = setInterval(passVal, 500);
 
 
 function passVal(){
+
   if(inData){
-      var val = map(inData, 0, 255, 1, 20);   // map input to the correct range of brightness 
-    document.getElementById("current").innerHTML = Math.floor(val);
-    document.getElementById("mf").innerHTML = Math.floor(val*10);
- 
-        $.ajax({
+    if(inData<129){
+    current = mappy(inData, 1, 128, 0, 150);
+    document.getElementById("current").innerHTML = Math.floor(current) + "mA";
+    }else{
+    magnetic_field = inData;//change this later
+    magnetic_field = mappy(inData, 129, 255, 0, 1000);
+    document.getElementById("mf").innerHTML = Math.floor(magnetic_field)+"G";
+     }
+
+           $.ajax({
   url: "./saveJSON.php",
   type: 'POST',
   ContentType: 'application/json',
-  data: {'data1': val,'data2': val,'namey':team}
+  data: {'current': Math.floor(current),'magnetic_field': Math.floor(magnetic_field)}
 }).done(function(response){
 }).fail(function(jqXHR, textStatus, errorThrown){
 });
+ }
+
   }
 
   
 
 
-    }
+    
 
 
 
@@ -99,4 +109,8 @@ function serialError(err) {
 
 function portClose() {
   print('The serial port closed.');
+}
+
+function mappy( x,  in_min,  in_max,  out_min,  out_max){
+  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }

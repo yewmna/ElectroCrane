@@ -138,29 +138,29 @@ function keyDown(e) {
 
 var timeout = setInterval(reloadChat, 500);    
     function reloadChat () {
-          team = location.hash.substr(1);
-
                  $.ajax({
           url: "data.json",
          contentType: "application/json; charset=utf-8",
           type: 'GET',
 
         }).done(function(response){
-            var parsed = JSON.parse(response);
+            if(response){
+                            var parsed = JSON.parse(response);
             var length = Object.keys(parsed).length;
-            var team = location.hash.substr(1);
 
-            for(var i = 0; i<length; i++){
-                var reading_1 = parsed[team]['readings']['arduino_1'];
-                var reading_2 = parsed[team]['readings']['arduino_2'];
+             var reading_1 = parsed[0];
             }
+
+        
             if (typeof reading_1 == 'undefined'){
                 console.log("No connected laptop");
             }else{
-                 high = reading_1;
+                 high = reading_1/10;
+                 document.getElementById("textplace").innerHTML = reading_1 + "mA";
+
             }
-            document.getElementById("textplace").innerHTML = Math.floor(high) + "A";
-            CHILD_NUM = Math.floor(high);
+            
+            CHILD_NUM = high;
     var childNoiseOpts     = { base: 60, amplitude: 0.8, speed: 0.08 };
     var lightningNoiseOpts = { base: 90, amplitude: 0.2, speed: 0.05 };
 
@@ -174,7 +174,9 @@ var timeout = setInterval(reloadChat, 500);
 });
     }   
 
-
+function mappy( x,  in_min,  in_max,  out_min,  out_max){
+  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
 
 function loop() {
     context.globalCompositeOperation = 'source-over';
@@ -680,9 +682,6 @@ var Color = new function() {
 // Init
 
 window.onload = function() {
-    var team = location.hash.substr(1);
-document.getElementById('tracking-script').src = "track.html#" + team;  
-document.getElementById('tracking-script').contentWindow.location.reload();
     init();
 };
 

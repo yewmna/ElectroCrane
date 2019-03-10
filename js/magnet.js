@@ -234,6 +234,10 @@ var Color = new function() {
     };
 };
 
+function mappy( x,  in_min,  in_max,  out_min,  out_max){
+  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+
 var loop = function(){
   requestAnimationFrame(loop, c);
   ctx.clearRect(0, 0, cw, ch);
@@ -292,16 +296,29 @@ var timeout = setInterval(reloadChat, 500);
             var parsed = JSON.parse(response);
             var length = Object.keys(parsed).length;
             for(var i = 0; i<length; i++){
-                var reading_1 = parsed[team]['readings']['arduino_1'];
-                var reading_2 = parsed[team]['readings']['arduino_2'];
+                var reading_1 = parsed[0];
+                var reading_2 = parsed[1];
             }
-            if (typeof reading_1 == 'undefined'){
+            if (typeof reading_2 == 'undefined'){
                 console.log("No connected laptop");
+                document.getElementById("magneticfield_value").innerHTML = "0G";
             }else{
-            size=reading_1*10;
+            size=mappy(reading_2,0,1000,0,300);
             mRadius = size;
+            var cat;
+            if(size ==0){
+              cat = "No magnetic field";
+            }
+            else if(size <= 100){
+              cat = "Low Strength";
+            }else if(size<=200){
+              cat = "Medium Strength";
+            }else{
+              cat = "High Strength";
+            }
 
-            document.getElementById("magneticfield_value").innerHTML = Math.floor(size);
+            document.getElementById("magneticfield_value").innerHTML = reading_2 + "G";
+            document.getElementById("magneticfield_cat").innerHTML = cat;
             }
 
 
