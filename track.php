@@ -4,6 +4,9 @@
 
 <?php
 if(isset($_POST['submit'])) {
+  header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
+header("Pragma: no-cache"); // HTTP 1.0.
+header("Expires: 0");
   //print_r($_POST);
     //$file = "experiments.json";
   //  $json_string = json_encode($_POST, JSON_PRETTY_PRINT);
@@ -23,7 +26,8 @@ $tempArray = json_decode($data_results);
 $tempArray[] = $additionalArray ;
 $jsonData = json_encode($tempArray);
 
-file_put_contents('experiments.json', $jsonData);   
+file_put_contents('experiments.json', $jsonData);
+header('track.php');
 
   }
 ?>
@@ -74,7 +78,7 @@ file_put_contents('experiments.json', $jsonData);
     padding: 10px;
     border-radius: 12px;
     border: 0px;
-        font-size: 12pt;
+        font-size: 14px;
 }
 
 h4{
@@ -120,14 +124,17 @@ border-radius: 5px;
 
 }
 
-a#track:active {
+#track:active {
     box-shadow: none;
     transition: 0.1s;
-    margin-left: -6px;
+    margin-left: 1px;
     margin-bottom: -6px;
-    width: 186px;
+    width: 98%;
     padding: 16px;
 }
+
+#track:focus {outline:0;}
+
 
 .ins {
     padding-top: 19px;
@@ -151,21 +158,22 @@ a#track:active {
 }
     
 
-a#insa:active {
-    box-shadow: none;
+#insa:active {
+box-shadow: none;
     transition: 0.1s;
     margin-left: -6px;
-    margin-bottom: -6px;
-    width: 186px;
+    margin-bottom: -14px;
+    width: 54px;
     padding: 16px;
 }
+#insa:focus {outline:0;}
 
 #tracking{
   background: rgba(253, 235, 85, 0.1);
 border: 1px solid rgba(196, 196, 196, 0.5);
 box-sizing: border-box;
 border-radius: 5px;
-font-size: 18px;
+font-size: 14px;
 color:#786e25;
 }
 
@@ -175,7 +183,7 @@ border: 1px solid rgba(196, 196, 196, 0.5);
 box-sizing: border-box;
 border-radius: 5px;
 line-height: 28px;
-font-size: 18px;
+font-size: 14px;
 }
 
 .system-status{
@@ -191,7 +199,7 @@ th{
   color:#fff;
   font-weight: 600;
 line-height: normal;
-font-size: 14px;
+font-size: 15px;
 color: #FFFFFF;
 border-bottom: 5px solid #135E9A;
 }
@@ -203,10 +211,26 @@ border-bottom: 5px solid #135E9A;
   <body>
 
 <div class="container-fluid">
+  <!-- Modal -->
+<div class="modal fade" id="instructionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">Instructions</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+    </div>
+  </div>
+</div>
   <div class="row">
     <div id="var" class="col-3 cont">
           <div class="ins">
-      <button id="insa">?</button>
+      <button id="insa" data-toggle="modal" data-target="#instructionModal">?</button>
     </div>
         <h4 class="secs">Experiment Variables</h4>
         <div class="row">
@@ -297,6 +321,7 @@ border-bottom: 5px solid #135E9A;
 <script src="js/graphs.js"></script>
 <div id="test"></div>
     <script>
+
 $( document ).ready(function() {
             $.getJSON('experiments.json', function(data) {
                 var tr;
