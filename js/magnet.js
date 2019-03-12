@@ -283,7 +283,7 @@ $(c).on('mousedown', mousedown);
 
 
 
-var timeout = setInterval(reloadChat, 500);    
+var timeout = setInterval(reloadChat, 50);    
     function reloadChat () {
                 var team = location.hash.substr(1);
 
@@ -293,7 +293,12 @@ var timeout = setInterval(reloadChat, 500);
           type: 'GET',
 
         }).done(function(response){
-            var parsed = JSON.parse(response);
+          try{
+
+          }catch{
+
+          }
+  var parsed = jQuery.parseJSON(JSON.stringify(response));
             var length = Object.keys(parsed).length;
             for(var i = 0; i<length; i++){
                 var reading_1 = parsed[0];

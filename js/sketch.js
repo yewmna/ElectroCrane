@@ -46,7 +46,7 @@ function setup() {
   serial.open(portName);              // open a serial port
 }
 
-var timeout = setInterval(passVal, 500);    
+var timeout = setInterval(passVal, 50);    
 
 
 function passVal(){
@@ -93,10 +93,16 @@ function printList(portList) {
 
 function serverConnected() {
   print('connected to server.');
+      $("#not-tracking").css("display","none");
+    $("#tracking").css("display","block");
+
 }
 
 function portOpen() {
   print('the serial port opened.')
+    $("#not-tracking").css("display","none");
+    $("#tracking").css("display","block");
+
 }
 
 function serialEvent() {
@@ -105,10 +111,16 @@ function serialEvent() {
 
 function serialError(err) {
   print('Something went wrong with the serial port. ' + err);
+  $("#not-tracking").css("display","block");
+    $("#tracking").css("display","none");
 }
 
 function portClose() {
   print('The serial port closed.');
+  $("#not-tracking").css("display","block");
+    $("#tracking").css("display","none");
+      serial.open(portName);              // open a serial port
+
 }
 
 function mappy( x,  in_min,  in_max,  out_min,  out_max){

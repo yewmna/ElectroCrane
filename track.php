@@ -13,7 +13,6 @@ if(isset($_POST['submit'])) {
     'trial' => $_POST['trial'],
     'coils' => $_POST['coils'],
     'current' => $_POST['current'],
-    'length' => $_POST['length'],
     'paperclips' => $_POST['paperclip']
   );
     //open or read json data
@@ -47,22 +46,169 @@ file_put_contents('experiments.json', $jsonData);
     <script src="js/p5.sound.min.js"></script>
     <script src="js/p5.serialport.js"></script>
     <title>ElectroCrane</title>
+<style>
+ body{
+  background: #FFF;
+ } 
 
+ #var{
+  background: #FFDC00;
+  border-right: 4px solid #BBA202;
+      padding-right: 35px;
+    padding-left: 35px;
+        min-height: 100vh;
+        position: fixed;
+
+ }
+ #current,#mf {
+    display: inline;
+}
+
+
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #262525;
+    background: #fff;
+    padding: 10px;
+    border-radius: 12px;
+    border: 0px;
+        font-size: 12pt;
+}
+
+h4{
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 700;
+ line-height: 32px;
+ color: #252004;
+}
+
+label{
+ font-weight: bold;
+line-height: 24px;
+font-size: 18px;
+color: #6A6224;
+}
+
+input.form-control{
+background: rgba(255, 255, 255, 1);
+border-radius: 5px;
+}
+
+
+#track,
+#track:hover,
+#track:focus {
+    width: 180px;
+    padding: 10px;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 600;
+    background-color: #2196F3;
+    border: 1px solid #2295f3;
+    box-shadow: -6px 0px 0px #165f9a, -6px 6px 0px #165f9a, -6px 12px 0px #165f9a, 0px 12px 0px #165f9a;
+    border-radius: 0px;
+    color: #fff;
+    cursor: pointer;
+    margin: 0 auto;
+    text-align: center;
+    width: 96%;
+        margin-left: 7px;
+        margin-top:5px;
+
+}
+
+a#track:active {
+    box-shadow: none;
+    transition: 0.1s;
+    margin-left: -6px;
+    margin-bottom: -6px;
+    width: 186px;
+    padding: 16px;
+}
+
+.ins {
+    padding-top: 19px;
+    padding-bottom: 40px;
+}
+
+    #insa,
+#insa:hover,
+#insa:focus {
+      width: 50px;
+    padding: 9px;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 600;
+     background-color: #e84444;
+    border: 1px solid #e84444;
+    box-shadow: -6px 0px 0px #922b2b, -6px 6px 0px #922b2b, -6px 12px 0px #922b2b, 0px 12px 0px #922b2b;
+    border-radius: 0px;
+    color: #fff;
+    cursor: pointer;
+}
+    
+
+a#insa:active {
+    box-shadow: none;
+    transition: 0.1s;
+    margin-left: -6px;
+    margin-bottom: -6px;
+    width: 186px;
+    padding: 16px;
+}
+
+#tracking{
+  background: rgba(253, 235, 85, 0.1);
+border: 1px solid rgba(196, 196, 196, 0.5);
+box-sizing: border-box;
+border-radius: 5px;
+font-size: 18px;
+color:#786e25;
+}
+
+#not-tracking{
+  background: rgba(227, 90, 90, 0.1);
+border: 1px solid rgba(196, 196, 196, 0.5);
+box-sizing: border-box;
+border-radius: 5px;
+line-height: 28px;
+font-size: 18px;
+}
+
+.system-status{
+  width:30px;
+      margin-top: -15px;
+}
+div#resy {
+    padding-top: 15px;
+}
+
+th{
+  background: #2196F3;
+  color:#fff;
+  font-weight: 600;
+line-height: normal;
+font-size: 14px;
+color: #FFFFFF;
+border-bottom: 5px solid #135E9A;
+}
+.col-9 {
+    margin-left: 30%;
+}
+</style>
   </head>
   <body>
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-12">
-                <div id="sensor">
-        <p id="current"></p>
-        <p id="mf"></p>
-    </div>
-        </div>
-    </div>
   <div class="row">
-    <div id="var" class="col-2 cont">
-        <h3 class="secs">Experiment Variables</h3>
+    <div id="var" class="col-3 cont">
+          <div class="ins">
+      <button id="insa">?</button>
+    </div>
+        <h4 class="secs">Experiment Variables</h4>
         <div class="row">
             <div class="col-12">
                 <form method="post" action="">
@@ -71,7 +217,7 @@ file_put_contents('experiments.json', $jsonData);
     <input type="text" class="form-control" name="trial" aria-describedby="emailHelp" placeholder="">
   </div>
   <div class="form-group">
-    <label for="exampleInputEmail1">Number of coils</label>
+    <label for="exampleInputEmail1">Coils</label>
     <input type="text" class="form-control" name="coils" aria-describedby="emailHelp" placeholder="">
   </div>
   <div class="form-group">
@@ -79,35 +225,42 @@ file_put_contents('experiments.json', $jsonData);
     <input type="text" class="form-control" name="current" placeholder="">
   </div>
     <div class="form-group">
-    <label for="exampleInputPassword1">Nail Length</label>
-    <input type="text" class="form-control" name="length" placeholder="">
-  </div>
-    <div class="form-group">
-    <label for="exampleInputPassword1">Number of paperclips</label>
+    <label for="exampleInputPassword1">Paperclips</label>
     <input type="text" class="form-control" name="paperclip" placeholder="">
   </div>
-              <input type="submit" name="submit" id="submit" action="">
+              <input id="track" type="submit" name="submit" id="submit" action="">
 </form>
             </div>
         </div>
 
     </div>
 
-    <div class="col-10">
+    <div class="col-9">
        
 <div clas="ani">
     <!--<img id="loading" src="https://i.imgur.com/qKJPfpT.gif"/>-->
 </div>
 <div id="resy">
+  <div class="row">
+    <div class="col-12">
+          <div style="display: none" id="tracking" class="alert alert-primary" role="alert">
+                <img class="system-status" src="img/allgood.svg"/>
+               You’re all set to play! Current is <strong><p id="current"></p></strong> and magnetic field is <strong><p id="mf"></p></strong> .Start playing!
+            </div>
+                <div style="display: none" id="not-tracking" class="alert alert-danger" role="alert">
+                  <img class="system-status" src="img/warning.svg"/>
+               Uh oh! Looks like there's a problem. Make sure your circuit is properly connected. 
+            </div>
+    </div>
+  </div>
 <div class="row">
     <div class="col-12">
-        <h4>Trial Results</h4>
-     <table class="table">
+        <h4 style="padding-top: 23px;">Experiment Logger</h4>
+     <table class="table table-striped">
         <tr>
             <th> Trial </th>
             <th> Coils </th>
             <th> Current </th>
-            <th> Nail Length </th>
             <th> Paperclips </th>
 
         </tr>
@@ -118,14 +271,13 @@ file_put_contents('experiments.json', $jsonData);
 <div class="row">
 
 
-<div class="col-8 ch">
-    <canvas id="myChart" width="400" height="200"></canvas>
+<div class="col-6 ch">
+  <h4>Coils & Paperclips</h4>
+    <canvas id="myChart" width="400" height="300"></canvas>
 </div>
-<div class="col-8 ch">
-    <canvas id="myChart2" width="400" height="200"></canvas>
-</div>
-<div class="col-8 ch">
-    <canvas id="myChart3" width="400" height="200"></canvas>
+<div class="col-6 ch">
+  <h4>Current & Paperclips</h4>
+    <canvas id="myChart2" width="400" height="300"></canvas>
 </div>
 </div>
 
@@ -154,7 +306,6 @@ $( document ).ready(function() {
                     tr.append("<td>" + "Trial " + y + "</td>");
                     tr.append("<td>" + data[i]['coils'] + "</td>");
                     tr.append("<td>" + data[i]['current'] + "</td>");
-                    tr.append("<td>" + data[i]['length'] + "</td>");
                     tr.append("<td>" + data[i]['paperclips'] + "</td>");
                     $('table').append(tr);
                 }

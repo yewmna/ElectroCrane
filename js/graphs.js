@@ -17,8 +17,18 @@ window.onload = function() {
           type: 'GET',
 
         }).done(function(response){
-            var parsed = JSON.parse(response);
-            coils_array = parsed.map(e => e.coils);
+            try{
+        var parsed = jQuery.parseJSON(JSON.stringify(response));
+       coils_array = parsed.map(e => e.coils);
+            console.log(coils_array);
+            volts_array = parsed.map(e => e.current);
+            length_array = parsed.map(e => e.length);
+            paperclips_array = parsed.map(e => e.paperclips);
+            trials_array = parsed.map(e => e.trial);
+
+            }catch{
+         var parsed = JSON.parse(response);
+       coils_array = parsed.map(e => e.coils);
             console.log(coils_array);
             volts_array = parsed.map(e => e.current);
             length_array = parsed.map(e => e.length);
@@ -26,13 +36,15 @@ window.onload = function() {
             trials_array = parsed.map(e => e.trial);
 
 
+            }
+
             //coils
 var myChart = new Chart(ctx, {
     type: 'line',
     data: {
         labels: trials_array,
         datasets: [{
-            label: '# of paperclips',
+            label: 'Paperclips',
             data: paperclips_array,
             backgroundColor: [
                 'rgba(255, 99, 132, 0)'
@@ -40,10 +52,10 @@ var myChart = new Chart(ctx, {
             borderColor: [
                 'rgba(255,99,132,1)'
             ],
-            borderWidth: 1
+            borderWidth: 3
         },
         {
-            label: '# of coils',
+            label: 'Coils',
             data: coils_array,
             backgroundColor: [
                 'rgba(255, 99, 132, 0)',
@@ -51,20 +63,38 @@ var myChart = new Chart(ctx, {
             borderColor: [
                 'rgba(54, 162, 235,1)',
             ],
-            borderWidth: 1
+            borderWidth: 3
         }]
     },
     options: {
+        legend:{
+             labels: {
+                  fontFamily: "Montserrat"
+            }
+
+        },
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero:true
+                    beginAtZero:true,
+                        fontFamily: "Montserrat"
+                }
+            }],
+            xAxes: [{
+                ticks: {
+                    beginAtZero:true,
+                        fontFamily: "Montserrat"
+
                 }
             }]
         },
          title: {
-            display: true,
-            text: 'Coils & Paperclips'
+            display: false,
+            text: 'COILS & PAPERCLIPS',
+            fontFamily: "Montserrat",
+            fontColor:'#252004',
+            fontSize:20,
+            fontStyle: 900
         }
     }
 });
@@ -75,7 +105,7 @@ var myChart2 = new Chart(ctx2, {
     data: {
         labels: trials_array,
         datasets: [{
-            label: '# of paperclips',
+            label: 'Paperclips',
             data: paperclips_array,
             backgroundColor: [
                 'rgba(255, 99, 132, 0)'
@@ -83,10 +113,10 @@ var myChart2 = new Chart(ctx2, {
             borderColor: [
                 'rgba(255,99,132,1)'
             ],
-            borderWidth: 1
+            borderWidth: 3
         },
         {
-            label: 'Voltage',
+            label: 'Current',
             data: volts_array,
             backgroundColor: [
                 'rgba(255, 99, 132, 0)',
@@ -94,64 +124,37 @@ var myChart2 = new Chart(ctx2, {
             borderColor: [
                 'rgba(54, 162, 235,1)',
             ],
-            borderWidth: 1
-        }]
+            borderWidth: 3
+        },
+        ]
     },
     options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        },
-         title: {
-            display: true,
-            text: 'Voltage & Paperclips'
-        }
-    }
-});
+        legend:{
+             labels: {
+                  fontFamily: "Montserrat"
+            }
 
-//coils
-var myChart3 = new Chart(ctx3, {
-    type: 'line',
-    data: {
-        labels: trials_array,
-        datasets: [{
-            label: '# of paperclips',
-            data: paperclips_array,
-            backgroundColor: [
-                'rgba(255, 99, 132, 0)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)'
-            ],
-            borderWidth: 1
         },
-        {
-            label: 'Length of Nail',
-            data: length_array,
-            backgroundColor: [
-                'rgba(255, 99, 132, 0)',
-            ],
-            borderColor: [
-                'rgba(54, 162, 235,1)',
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero:true
+                    beginAtZero:true,
+                        fontFamily: "Montserrat"
+                }
+            }],
+            xAxes: [{
+                ticks: {
+                    beginAtZero:true,
+                        fontFamily: "Montserrat"
+
                 }
             }]
         },
          title: {
-            display: true,
-            text: 'Nail Length & Paperclips'
-        }
+            display: false,
+            text: 'Current & Paperclips',
+            fontFamily: "Montserrat"
+        },
     }
 });
 
