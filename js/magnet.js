@@ -46,21 +46,28 @@ mRadiusDisplay = $('#mRadiusDisplay'),
 attract = true,
 rand = function(a,b){return ~~((Math.random()*(b-a+1))+a);},
 things = [],
+paperclips = [],
 thingCount = 200,
+paperCount = 50,
 minSpeed = .5,
 maxSpeed = 15,
 friction = 0.997,
 
-Thing = function(){
+Paperclip = function(){
+  base_image = new Image();
+  base_image.src = 'img/paperclip.svg';
   this.vx = 0;
   this.vy = rand(2,5);
   this.x = rand(0, cw);
   this.y = rand(0, ch); 
   this.radius = rand(4, 4);
   this.affected = false;
+  base_image.onload = function(){
+    ctx.drawImage(base_image, this.x, this.y);
+  }
 }
 
-Thing.prototype = {
+Paperclip.prototype = {
   update: function(i){
     var dx = mx- this.x;
     var dy = my- this.y;
@@ -100,43 +107,29 @@ Thing.prototype = {
     if(this.y < 0){ this.x = rand(0, cw);   this.y = rand(0, ch); }
   },
   render: function(i){
-    
-     ctx.beginPath();
-
-    ctx.rect(this.x, this.y, 6, 1);
-      ctx.stroke();
-ctx.fill();
-
-    ctx.fillStyle = 'hsla(51, 89%, 45%, 1)';//Color of circles when not attracted
-    ctx.strokeStyle = 'hsla(51, 89%, 45%, 1)';//Color of circles when not attracted
-    if(this.affected){
-      if(attract){
-        ctx.fillStyle = 'hsla(51, 89%, 45%, 1)';//Color of circles when attracted
-        ctx.strokeStyle = 'hsla(51, 89%, 45%, 1)'; //Color of circles when attracted
-      } else {
-        ctx.fillStyle = 'hsla(51, 89%, 45%, 1)';
-        ctx.strokeStyle = 'hsla(51, 89%, 45%, 1)';
-      }
-    }    
-    ctx.fill();
-    ctx.stroke();
+    ctx.drawImage(base_image, this.x, this.y);
   }
 }
   
-var updateThings = function(){
-  var i = things.length;
+var updatePapers = function(){
+  var i = paperclips.length;
   while(i--){
-    things[i].update(i); 
+      base_image = new Image();
+  base_image.src = 'img/paperclip.svg';
+    paperclips[i].update(i); 
   }
 }
       
-var renderThings = function(){
-  var i = things.length;
+var renderPapers = function(){
+  var i = paperclips.length;
   while(i--){
-    things[i].render(i); 
+      base_image = new Image();
+  base_image.src = 'img/paperclip.svg';
+    paperclips[i].render(i); 
+
   } 
 }
-    
+
 var renderMRadius = function(){
         if(mRadius>265){
           mRadius = 265;
@@ -241,9 +234,11 @@ function mappy( x,  in_min,  in_max,  out_min,  out_max){
 var loop = function(){
   requestAnimationFrame(loop, c);
   ctx.clearRect(0, 0, cw, ch);
-  updateThings();
-  renderThings();
+  //updateThings();
+  //renderThings();
   renderMRadius();
+  updatePapers();
+  renderPapers();
 }
 
 
@@ -254,9 +249,10 @@ var resize = function(){
   mx = cw/2;
   my = ch/2;
 }
-    
-for(var i = 0; i < thingCount; i++){
-  things.push(new Thing());    
+
+
+for(var i = 0; i < paperCount; i++){
+  paperclips.push(new Paperclip());    
 }
 
 $(window).on('resize', resize);
@@ -285,31 +281,20 @@ $(c).on('mousedown', mousedown);
 
 var timeout = setInterval(reloadChat, 50);    
     function reloadChat () {
-                var team = location.hash.substr(1);
-
                  $.ajax({
            url: "data.json",
          contentType: "application/json; charset=utf-8",
           type: 'GET',
 
         }).done(function(response){
-          try{
-
-          }catch{
-
-          }
-  var parsed = jQuery.parseJSON(JSON.stringify(response));
-            var length = Object.keys(parsed).length;
-            for(var i = 0; i<length; i++){
-                var reading_1 = parsed[0];
+                var parsed = jQuery.parseJSON((response));
                 var reading_2 = parsed[1];
-            }
-            if (typeof reading_2 == 'undefined'){
-                console.log("No connected laptop");
+           if (typeof reading_2 == 'undefined'){
                 document.getElementById("magneticfield_value").innerHTML = "0G";
             }else{
             size=mappy(reading_2,0,1000,0,300);
             mRadius = size;
+            console.log(parsed);
             var cat;
             if(size ==0){
               cat = "No magnetic field";

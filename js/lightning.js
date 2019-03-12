@@ -145,8 +145,7 @@ var timeout = setInterval(reloadChat, 500);
 
         }).done(function(response){
             if(response){
-                            var parsed = JSON.parse(response);
-            var length = Object.keys(parsed).length;
+                          var parsed = jQuery.parseJSON((response));
 
              var reading_1 = parsed[0];
             }
