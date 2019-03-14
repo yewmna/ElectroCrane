@@ -135,8 +135,8 @@ function keyDown(e) {
     }
 }
 
-
-var timeout = setInterval(reloadChat, 500);    
+var prev;
+var timeout = setInterval(reloadChat, 10);    
     function reloadChat () {
                  $.ajax({
           url: "data.json",
@@ -145,9 +145,22 @@ var timeout = setInterval(reloadChat, 500);
 
         }).done(function(response){
             if(response){
-                          var parsed = jQuery.parseJSON((response));
+        var parsed = jQuery.parseJSON(JSON.stringify(response));
+try{
+var reading_1 = parsed.substring(
+    parsed.lastIndexOf("[") + 1, 
+    parsed.lastIndexOf(",")
+);
+} 
+catch(error){
+         var reading_1 = parsed[0];
+}   
 
-             var reading_1 = parsed[0];
+if (Math.abs(reading_1-prev)<3){
+reading_1 = prev;
+}
+prev = reading_1;
+
             }
 
         

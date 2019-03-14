@@ -234,11 +234,9 @@ function mappy( x,  in_min,  in_max,  out_min,  out_max){
 var loop = function(){
   requestAnimationFrame(loop, c);
   ctx.clearRect(0, 0, cw, ch);
-  //updateThings();
-  //renderThings();
-  renderMRadius();
   updatePapers();
   renderPapers();
+  renderMRadius();
 }
 
 
@@ -257,12 +255,6 @@ for(var i = 0; i < paperCount; i++){
 
 $(window).on('resize', resize);
 
-mRadiusInput.on('change', function(){
-  var val = $(this).val();
-  mRadius = val;
-  mRadiusDisplay.text(val);
-});
-
 setTimeout(function(){
 document.body.appendChild(c);
 resize();
@@ -271,30 +263,30 @@ loop();
 
 
 
-var mousedown = function(){
-  attract = (attract) ? false : true;
-}
-
-$(c).on('mousedown', mousedown);
-
-
-
-var timeout = setInterval(reloadChat, 50);    
+var timeout = setInterval(reloadChat, 10);    
     function reloadChat () {
                  $.ajax({
-           url: "data.json",
+         url: "data.json",
          contentType: "application/json; charset=utf-8",
-          type: 'GET',
+        type: 'GET',
 
         }).done(function(response){
-                var parsed = jQuery.parseJSON((response));
-                var reading_2 = parsed[1];
+        var parsed = jQuery.parseJSON(JSON.stringify(response));
+try{
+var reading_2 = parsed.substring(
+    parsed.lastIndexOf(",") + 1, 
+    parsed.lastIndexOf("]")
+);
+} 
+catch(error){
+         var reading_2 = parsed[1];
+}   
+
            if (typeof reading_2 == 'undefined'){
                 document.getElementById("magneticfield_value").innerHTML = "0G";
             }else{
             size=mappy(reading_2,0,1000,0,300);
             mRadius = size;
-            console.log(parsed);
             var cat;
             if(size ==0){
               cat = "No magnetic field";

@@ -238,19 +238,19 @@ border-bottom: 5px solid #135E9A;
                 <form method="post" action="">
   <div class="form-group">
     <label for="exampleInputEmail1">Trial</label>
-    <input type="text" class="form-control" name="trial" aria-describedby="emailHelp" placeholder="">
+    <input required type="text" class="form-control" name="trial" aria-describedby="emailHelp" placeholder="">
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Coils</label>
-    <input type="text" class="form-control" name="coils" aria-describedby="emailHelp" placeholder="">
+    <input required type="text" class="form-control" name="coils" aria-describedby="emailHelp" placeholder="">
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Current</label>
-    <input type="text" class="form-control" name="current" placeholder="">
+    <input required  type="text" class="form-control" name="current" placeholder="">
   </div>
     <div class="form-group">
     <label for="exampleInputPassword1">Paperclips</label>
-    <input type="text" class="form-control" name="paperclip" placeholder="">
+    <input required  type="text" class="form-control" name="paperclip" placeholder="">
   </div>
               <input id="track" type="submit" name="submit" id="submit" action="">
 </form>

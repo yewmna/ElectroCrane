@@ -48,12 +48,9 @@ function setup() {
 
 var timeout = setInterval(passVal, 50);    
 
-
 function passVal(){
 
   if(inData){
-       // document.getElementById("current").innerHTML = Math.floor(inData) + "mA";
-
     if(inData<129){
     current = mappy(inData, 1, 128, 0, 150);
     document.getElementById("current").innerHTML = Math.floor(current) + "mA";
