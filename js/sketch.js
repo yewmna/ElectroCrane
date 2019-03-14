@@ -52,12 +52,17 @@ var timeout = setInterval(passVal, 50);
 function passVal(){
 
   if(inData){
+       // document.getElementById("current").innerHTML = Math.floor(inData) + "mA";
+
     if(inData<129){
     current = mappy(inData, 1, 128, 0, 150);
     document.getElementById("current").innerHTML = Math.floor(current) + "mA";
     }else{
     magnetic_field = inData;//change this later
     magnetic_field = mappy(inData, 129, 255, 0, 1000);
+    if (magnetic_field<100){
+      magnetic_field=0;
+    }
     document.getElementById("mf").innerHTML = Math.floor(magnetic_field)+"G";
      }
 

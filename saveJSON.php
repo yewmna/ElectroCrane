@@ -1,21 +1,31 @@
 <?php 
+  $old_current = 0;
+  $old_mf = 0;
+  $oldvals = json_decode(file_get_contents('data.json'));
+  $old_current = $oldvals[0];
+  $old_mf = $oldvals[1];
+  
+  if($old_mf==null){
+    $old_mf=0;
+  }
+
     $current = json_decode($_POST['current']);
     $magentic_field = json_decode($_POST['magnetic_field']);
     
+
+
     if($magentic_field==null && $current ==null){
-      echo "nothing";
     }else{
       if($magnetic_field==null){
-        $magnetic_field = 0;
+        $magnetic_field = $old_mf;
       }
       if($current == null){
-        $current = 0;
+        $current = $old_current;
       }
       $readings = array($current, $magentic_field);
       saveJSON($readings);
     }
-    
-
+   
 
     function saveJSON($array){
       $file = fopen("data.json","w");
