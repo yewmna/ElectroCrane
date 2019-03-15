@@ -48,7 +48,7 @@ rand = function(a,b){return ~~((Math.random()*(b-a+1))+a);},
 things = [],
 paperclips = [],
 thingCount = 200,
-paperCount = 50,
+paperCount = 10,
 minSpeed = .5,
 maxSpeed = 15,
 friction = 0.997,
@@ -138,7 +138,7 @@ var renderMRadius = function(){
 
         ctx.beginPath();
         ctx.ellipse(mx, my, mRadius, mRadius/2.25, Math.PI*2, 0, 2 * Math.PI);
-        var _currentAlpha = 0.6;
+        var _currentAlpha = 0.1;
         var gradient = ctx.createRadialGradient(mx, my, mRadius/2, mx, my, 0, mRadius);
         gradient.addColorStop(1, Color.setAlphaToString(_currentAlpha));
         gradient.addColorStop(1, Color.setAlphaToString(0));
@@ -150,7 +150,7 @@ var renderMRadius = function(){
 
         ctx.beginPath();
         ctx.ellipse(mx, my, mRadius, mRadius/2, Math.PI*2, 0, 2 * Math.PI);
-        var _currentAlpha = 0.5;
+        var _currentAlpha = 0.1;
         var gradient = ctx.createRadialGradient(mx, my, mRadius/2, mx, my, 0, mRadius);
         gradient.addColorStop(1, Color.setAlphaToString(_currentAlpha));
         gradient.addColorStop(1, Color.setAlphaToString(0));
@@ -162,7 +162,7 @@ var renderMRadius = function(){
 
         ctx.beginPath();
         ctx.ellipse(mx, my, mRadius, mRadius/1.75, Math.PI*2, 0, 2 * Math.PI);
-        var _currentAlpha = 0.4;
+        var _currentAlpha = 0.1;
         var gradient = ctx.createRadialGradient(mx, my, mRadius/2, mx, my, 0, mRadius);
         gradient.addColorStop(1, Color.setAlphaToString(_currentAlpha));
         gradient.addColorStop(1, Color.setAlphaToString(0));
@@ -175,7 +175,7 @@ var renderMRadius = function(){
         
         ctx.beginPath();
         ctx.ellipse(mx, my, mRadius, mRadius/1.5, Math.PI*2, 0, 2 * Math.PI);
-        var _currentAlpha = 0.3;
+        var _currentAlpha = 0.1;
         var gradient = ctx.createRadialGradient(mx, my, mRadius/2, mx, my, 0, mRadius);
         gradient.addColorStop(1, Color.setAlphaToString(_currentAlpha));
         gradient.addColorStop(1, Color.setAlphaToString(0));
@@ -187,7 +187,7 @@ var renderMRadius = function(){
 
         ctx.beginPath();
         ctx.ellipse(mx, my, mRadius, mRadius/1.25, Math.PI*2, 0, 2 * Math.PI);
-        var _currentAlpha = 0.2;
+        var _currentAlpha = 0.1;
         var gradient = ctx.createRadialGradient(mx, my, mRadius/2, mx, my, 0, mRadius);
         gradient.addColorStop(1, Color.setAlphaToString(_currentAlpha));
         gradient.addColorStop(1, Color.setAlphaToString(0));

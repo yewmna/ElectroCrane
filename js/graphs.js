@@ -158,6 +158,76 @@ var myChart2 = new Chart(ctx2, {
     }
 });
 
+//coils
+var myChart3 = new Chart(ctx3, {
+    type: 'line',
+    data: {
+        labels: trials_array,
+        datasets: [{
+            label: 'Paperclips',
+            data: paperclips_array,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)'
+            ],
+            borderWidth: 3
+        },
+        {
+            label: 'Current',
+            data: volts_array,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0)',
+            ],
+            borderColor: [
+                'rgba(54, 162, 235,1)',
+            ],
+            borderWidth: 3
+        },
+        {
+            label: 'Coils',
+            data: coils_array,
+            backgroundColor: [
+                'rgba(255, 220, 0, 0)',
+            ],
+            borderColor: [
+                'rgba(255, 220, 0, 1)',
+            ],
+            borderWidth: 3
+        },
+        ]
+    },
+    options: {
+        legend:{
+             labels: {
+                  fontFamily: "Montserrat"
+            }
+
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true,
+                        fontFamily: "Montserrat"
+                }
+            }],
+            xAxes: [{
+                ticks: {
+                    beginAtZero:true,
+                        fontFamily: "Montserrat"
+
+                }
+            }]
+        },
+         title: {
+            display: false,
+            text: 'Current & Paperclips',
+            fontFamily: "Montserrat"
+        },
+    }
+});
+
             }).fail(function(jqXHR, textStatus, errorThrown){
 });
 

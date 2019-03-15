@@ -303,6 +303,10 @@ border-bottom: 5px solid #135E9A;
   <h4>Current & Paperclips</h4>
     <canvas id="myChart2" width="400" height="300"></canvas>
 </div>
+<div class="col-6 ch">
+  <h4>Coils & Current & Paperclips</h4>
+    <canvas id="myChart3" width="400" height="300"></canvas>
+</div>
 </div>
 
 
