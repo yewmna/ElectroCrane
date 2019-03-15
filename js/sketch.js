@@ -6,7 +6,7 @@ https://itp.nyu.edu/physcomp/labs/labs-serial-communication/lab-serial-input-to-
 https://itp.nyu.edu/physcomp/labs/labs-serial-communication/lab-serial-input-to-the-p5-js-ide/
 */
 var serial;   // variable to hold an instance of the serialport library
-var portName = '/dev/cu.usbmodem14101';    // fill in your serial port name here
+var portName = '/dev/cu.usbmodem14301';    // fill in your serial port name here
 var inData;   // variable to hold the input data from Arduino
 
 var minWidth = 10;   //set min width and height for canvas
@@ -69,7 +69,9 @@ function passVal(){
   ContentType: 'application/json',
   data: {'current': Math.floor(current),'magnetic_field': Math.floor(magnetic_field)}
 }).done(function(response){
+  console.log("updated!");
 }).fail(function(jqXHR, textStatus, errorThrown){
+  console.log("slow!");
 });
  }
 
@@ -113,6 +115,7 @@ function serialEvent() {
 
 function serialError(err) {
   print('Something went wrong with the serial port. ' + err);
+  portName = "/dev/cu.usbmodem14301";
   $("#not-tracking").css("display","block");
     $("#tracking").css("display","none");
 }

@@ -138,7 +138,7 @@ var renderMRadius = function(){
 
         ctx.beginPath();
         ctx.ellipse(mx, my, mRadius, mRadius/2.25, Math.PI*2, 0, 2 * Math.PI);
-        var _currentAlpha = 0.1;
+        var _currentAlpha = 0.35;
         var gradient = ctx.createRadialGradient(mx, my, mRadius/2, mx, my, 0, mRadius);
         gradient.addColorStop(1, Color.setAlphaToString(_currentAlpha));
         gradient.addColorStop(1, Color.setAlphaToString(0));
@@ -150,7 +150,7 @@ var renderMRadius = function(){
 
         ctx.beginPath();
         ctx.ellipse(mx, my, mRadius, mRadius/2, Math.PI*2, 0, 2 * Math.PI);
-        var _currentAlpha = 0.1;
+        var _currentAlpha = 0.30;
         var gradient = ctx.createRadialGradient(mx, my, mRadius/2, mx, my, 0, mRadius);
         gradient.addColorStop(1, Color.setAlphaToString(_currentAlpha));
         gradient.addColorStop(1, Color.setAlphaToString(0));
@@ -162,7 +162,7 @@ var renderMRadius = function(){
 
         ctx.beginPath();
         ctx.ellipse(mx, my, mRadius, mRadius/1.75, Math.PI*2, 0, 2 * Math.PI);
-        var _currentAlpha = 0.1;
+        var _currentAlpha = 0.25;
         var gradient = ctx.createRadialGradient(mx, my, mRadius/2, mx, my, 0, mRadius);
         gradient.addColorStop(1, Color.setAlphaToString(_currentAlpha));
         gradient.addColorStop(1, Color.setAlphaToString(0));
@@ -175,7 +175,7 @@ var renderMRadius = function(){
         
         ctx.beginPath();
         ctx.ellipse(mx, my, mRadius, mRadius/1.5, Math.PI*2, 0, 2 * Math.PI);
-        var _currentAlpha = 0.1;
+        var _currentAlpha = 0.20;
         var gradient = ctx.createRadialGradient(mx, my, mRadius/2, mx, my, 0, mRadius);
         gradient.addColorStop(1, Color.setAlphaToString(_currentAlpha));
         gradient.addColorStop(1, Color.setAlphaToString(0));
@@ -187,7 +187,7 @@ var renderMRadius = function(){
 
         ctx.beginPath();
         ctx.ellipse(mx, my, mRadius, mRadius/1.25, Math.PI*2, 0, 2 * Math.PI);
-        var _currentAlpha = 0.1;
+        var _currentAlpha = 0.15;
         var gradient = ctx.createRadialGradient(mx, my, mRadius/2, mx, my, 0, mRadius);
         gradient.addColorStop(1, Color.setAlphaToString(_currentAlpha));
         gradient.addColorStop(1, Color.setAlphaToString(0));
@@ -285,7 +285,7 @@ catch(error){
            if (typeof reading_2 == 'undefined'){
                 document.getElementById("magneticfield_value").innerHTML = "0G";
             }else{
-            size=mappy(reading_2,0,1000,0,300);
+            size=mappy(reading_2,0,1000,0,200);
             mRadius = size;
             var cat;
             if(size ==0){

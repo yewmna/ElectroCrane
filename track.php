@@ -320,7 +320,7 @@ border-bottom: 5px solid #135E9A;
 </div>
 
 </div>
-<script src="js/sketch.js"></script>
+<script src="js/sketch.js?v=2"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <script src="js/graphs.js"></script>
 <div id="test"></div>

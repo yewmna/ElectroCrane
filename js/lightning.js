@@ -136,7 +136,7 @@ function keyDown(e) {
 }
 
 var prev;
-var timeout = setInterval(reloadChat, 10);    
+var timeout = setInterval(reloadChat, 0);    
     function reloadChat () {
                  $.ajax({
           url: "data.json",
