@@ -14,6 +14,7 @@ header("Expires: 0");
 
     $additionalArray = array(
     'trial' => $_POST['trial'],
+    'date' => date('jS \of F, h:i A'),
     'coils' => $_POST['coils'],
     'current' => $_POST['current'],
     'paperclips' => $_POST['paperclip']
@@ -27,7 +28,20 @@ $tempArray[] = $additionalArray ;
 $jsonData = json_encode($tempArray);
 
 file_put_contents('experiments.json', $jsonData);
-header('track.php');
+echo '
+<script src ="js/jquery-3.3.1.min.js"></script>
+<script>
+function feedback() {
+  console.log("im here");
+  $("#recorded").css("display","block");
+  $(".ins").css("margin-top","-4px");
+  $("#placeholder").hide();
+}
+
+$( document ).ready(function() {
+           feedback();
+        });
+</script>';
 
   }
 ?>
@@ -43,6 +57,9 @@ header('track.php');
 
 <!--My CSS-->
     <link rel="stylesheet" href="css/style.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+
 <!--Serial connection-->
     <script src ="js/jquery-3.3.1.min.js"></script>
     <script src="js/p5.min.js"></script>
@@ -54,14 +71,21 @@ header('track.php');
  body{
   background: #FFF;
  } 
+ img#logo {
+    position: absolute;
+    top: 26px;
+    z-index: 9999;
+    left: 42px;
+}
 
  #var{
   background: #FFDC00;
-  border-right: 4px solid #BBA202;
-      padding-right: 35px;
+    border-right: 4px solid #BBA202;
+    padding-right: 35px;
     padding-left: 35px;
-        min-height: 100vh;
-        position: fixed;
+    min-height: 100vh;
+    position: fixed;
+    padding-top: 110px;
 
  }
  #current,#mf {
@@ -78,22 +102,23 @@ header('track.php');
     padding: 10px;
     border-radius: 12px;
     border: 0px;
-        font-size: 14px;
+    font-size: 14px;
 }
 
 h4{
-  text-transform: uppercase;
-  font-size: 18px;
-  font-weight: 700;
- line-height: 32px;
- color: #252004;
+    text-transform: uppercase;
+    font-size: 16.5px;
+    font-weight: 700;
+    line-height: 32px;
+    color: #000;
+    letter-spacing: 2px;
+    text-align: center;
 }
 
 label{
- font-weight: bold;
-line-height: 24px;
-font-size: 18px;
-color: #6A6224;
+font-weight: 500;
+    font-size: 16px;
+    color: #000;
 }
 
 input.form-control{
@@ -107,9 +132,9 @@ border-radius: 5px;
 #track:focus {
     width: 180px;
     padding: 10px;
-    font-size: 15px;
+    font-size: 20px;
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 700;
     background-color: #2196F3;
     border: 1px solid #2295f3;
     box-shadow: -6px 0px 0px #165f9a, -6px 6px 0px #165f9a, -6px 12px 0px #165f9a, 0px 12px 0px #165f9a;
@@ -119,8 +144,9 @@ border-radius: 5px;
     margin: 0 auto;
     text-align: center;
     width: 96%;
-        margin-left: 7px;
-        margin-top:5px;
+    margin-left: 7px;
+    margin-top: 5px;
+    border-radius: 5px;
 
 }
 
@@ -128,7 +154,7 @@ border-radius: 5px;
     box-shadow: none;
     transition: 0.1s;
     margin-left: 1px;
-    margin-bottom: -6px;
+    margin-bottom: -12px;
     width: 98%;
     padding: 16px;
 }
@@ -137,36 +163,81 @@ border-radius: 5px;
 
 
 .ins {
-    padding-top: 19px;
+padding-top: 19px;
     padding-bottom: 40px;
+    margin-top: 70px;
+    margin-left: 8px;
+    float: left;
+    margin-right: 13px;
 }
 
     #insa,
 #insa:hover,
 #insa:focus {
-      width: 50px;
+width: 34px;
     padding: 9px;
-    font-size: 20px;
+    height: 31px;
+    line-height: 16px;
+    font-size: 16px;
     text-transform: uppercase;
     font-weight: 600;
-     background-color: #e84444;
+    background-color: #e84444;
     border: 1px solid #e84444;
     box-shadow: -6px 0px 0px #922b2b, -6px 6px 0px #922b2b, -6px 12px 0px #922b2b, 0px 12px 0px #922b2b;
     border-radius: 0px;
     color: #fff;
     cursor: pointer;
+    border-radius: 5px;
 }
     
 
 #insa:active {
-box-shadow: none;
+    box-shadow: none;
     transition: 0.1s;
     margin-left: -6px;
     margin-bottom: -14px;
-    width: 54px;
+    width: 38px;
     padding: 16px;
+    height: 44px;
+    padding-left: 13px;
+    padding-top: 12px;
 }
 #insa:focus {outline:0;}
+
+
+  #refresh,
+#refresh:hover,
+#refresh:focus {
+    width: 34px;
+    padding: 9px;
+    height: 31px;
+    line-height: 17px;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 600;
+    background-color: #9E9E9E;
+    border: 1px solid #9E9E9E;
+    box-shadow: -6px 0px 0px #4f4f4f, -6px 6px 0px #4f4f4f, -6px 12px 0px #4f4f4f, 0px 12px 0px #4f4f4f;
+    border-radius: 0px;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    padding-top: 9px;
+}
+    
+
+#refresh:active {
+    box-shadow: none;
+    transition: 0.1s;
+    margin-left: -6px;
+    margin-bottom: -14px;
+    width: 38px;
+    padding: 16px;
+    height: 44px;
+    padding-left: 13px;
+    padding-top: 12px;
+}
+#refresh:focus {outline:0;}
 
 #tracking{
   background: rgba(253, 235, 85, 0.1);
@@ -195,16 +266,51 @@ div#resy {
 }
 
 th{
-  background: #2196F3;
-  color:#fff;
-  font-weight: 600;
-line-height: normal;
-font-size: 15px;
-color: #FFFFFF;
-border-bottom: 5px solid #135E9A;
+background: #2196F3;
+    color: #fff;
+    font-weight: 600;
+    line-height: normal;
+    font-size: 15px;
+    color: #FFFFFF;
+    border-bottom: 5px solid #135E9A !important;
+    border-top: 0px !important;
 }
-.col-9 {
-    margin-left: 30%;
+.col-10 {
+    margin-left: 23%;
+    -ms-flex: 0 0 82.333333%;
+    flex: 0 0 82.333333%;
+    max-width: 82.333333%;
+}
+
+.col-2 {
+    -ms-flex: 0 0 19%;
+    flex: 0 0 19%;
+    max-width: 19%;
+}
+
+
+
+span#recorded {
+        color: #1da71d;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 22px;
+    font-size:20px;
+}
+
+tr {
+    text-align: center;
+}
+
+.cutom-labels {
+    text-align: center;
+}
+
+span.g-l {
+    font-size: 14px;
+    margin-right: 12px;
+    padding-bottom:13px;
 }
 </style>
   </head>
@@ -228,11 +334,10 @@ border-bottom: 5px solid #135E9A;
   </div>
 </div>
   <div class="row">
-    <div id="var" class="col-3 cont">
-          <div class="ins">
-      <button id="insa" data-toggle="modal" data-target="#instructionModal">?</button>
-    </div>
-        <h4 class="secs">Experiment Variables</h4>
+      
+    <div id="var" class="col-2 cont">
+<img id="logo" src="img/logo.svg"/>
+        <h4 class="secs">Enter Variables</h4>
         <div class="row">
             <div class="col-12">
                 <form method="post" action="">
@@ -241,25 +346,32 @@ border-bottom: 5px solid #135E9A;
     <input required type="text" class="form-control" name="trial" aria-describedby="emailHelp" placeholder="">
   </div>
   <div class="form-group">
-    <label for="exampleInputEmail1">Coils</label>
+    <label for="exampleInputEmail1">Coils (Turns)</label>
     <input required type="text" class="form-control" name="coils" aria-describedby="emailHelp" placeholder="">
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Current</label>
+    <label for="exampleInputPassword1">Current (mA)</label>
     <input required  type="text" class="form-control" name="current" placeholder="">
   </div>
     <div class="form-group">
     <label for="exampleInputPassword1">Paperclips</label>
     <input required  type="text" class="form-control" name="paperclip" placeholder="">
   </div>
-              <input id="track" type="submit" name="submit" id="submit" action="">
-</form>
+              <input id="track" type="submit" name="submit" id="submit" action="" value="Record" >
+              <span id="recorded" style="display:none"><i class="fas fa-check"></i>Recorded</span>
+</form>          <div class="ins">
+      <button id="insa" data-toggle="modal" data-target="#instructionModal">?</button>
+    </div>
+    <div class="ins">
+      <button id="refresh"><i class="fas fa-redo-alt"></i></button>
+    </div>
             </div>
+
         </div>
 
     </div>
 
-    <div class="col-9">
+    <div class="col-10">
        
 <div clas="ani">
     <!--<img id="loading" src="https://i.imgur.com/qKJPfpT.gif"/>-->
@@ -269,7 +381,7 @@ border-bottom: 5px solid #135E9A;
     <div class="col-12">
           <div style="display: none" id="tracking" class="alert alert-primary" role="alert">
                 <img class="system-status" src="img/allgood.svg"/>
-               You’re all set to play! Current is <strong><p id="current"></p></strong> and magnetic field is <strong><p id="mf"></p></strong> .Start playing!
+               You’re all set to play! Current is <strong><p id="current">0mA</p></strong> and magnetic field is <strong><p id="mf">0G</p></strong> .Start playing!
             </div>
                 <div style="display: none" id="not-tracking" class="alert alert-danger" role="alert">
                   <img class="system-status" src="img/warning.svg"/>
@@ -280,14 +392,23 @@ border-bottom: 5px solid #135E9A;
 <div class="row">
     <div class="col-12">
         <h4 style="padding-top: 23px;">Experiment Logger</h4>
-     <table class="table table-striped">
+     <table id="mytable" class="table table-striped">
         <tr>
-            <th> Trial </th>
-            <th> Coils </th>
-            <th> Current </th>
-            <th> Paperclips </th>
-
+            <th style="border-radius: 13px 0px 0px 0px;"> Trial </th>
+            <th> Time Recorded </th>
+            <th> Coils (Turns) </th>
+            <th> Current (mA) </th>
+            <th style="border-radius: 0px 13px 0px 0px;"> Paperclips </th>
         </tr>
+        <tr id="placeholder">
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+        <tbody id="testit">
+        </tbody>
     </table>
     </div>
 
@@ -297,15 +418,19 @@ border-bottom: 5px solid #135E9A;
 
 <div class="col-6 ch">
   <h4>Coils & Paperclips</h4>
-    <canvas id="myChart" width="400" height="300"></canvas>
+  <div class="cutom-labels">
+    <span class="g-l">Coils</span><img class="g-i" src="img/red.svg"/>
+    <span class="g-l">Paperclips</span><img class="g-i" src="img/blue.svg"/>
+  </div>
+    <canvas id="myChart" width="400" height="250"></canvas>
 </div>
 <div class="col-6 ch">
   <h4>Current & Paperclips</h4>
-    <canvas id="myChart2" width="400" height="300"></canvas>
-</div>
-<div class="col-6 ch">
-  <h4>Coils & Current & Paperclips</h4>
-    <canvas id="myChart3" width="400" height="300"></canvas>
+    <div class="cutom-labels">
+    <span class="g-l">Current</span><img class="g-i" src="img/red.svg"/>
+    <span class="g-l">Paperclips</span><img class="g-i" src="img/blue.svg"/>
+  </div>
+    <canvas id="myChart2" width="400" height="250"></canvas>
 </div>
 </div>
 
@@ -321,25 +446,40 @@ border-bottom: 5px solid #135E9A;
 
 </div>
 <script src="js/sketch.js?v=2"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script src="js/Chart.min.js"></script>
 <script src="js/graphs.js"></script>
 <div id="test"></div>
     <script>
 
+
 $( document ).ready(function() {
+var rowCount = $('#myTable tr').length;
+
             $.getJSON('experiments.json', function(data) {
                 var tr;
+                var total=0;
+                var attempts=data.length;
                 for (var i = 0; i < data.length; i++) {
                   var y = i+1;
                     tr = $('<tr/>');
                     tr.append("<td>" + "Trial " + y + "</td>");
+                    tr.append("<td>" + data[i]['date'] + "</td>");
                     tr.append("<td>" + data[i]['coils'] + "</td>");
                     tr.append("<td>" + data[i]['current'] + "</td>");
                     tr.append("<td>" + data[i]['paperclips'] + "</td>");
+                    total += Number(data[i]['paperclips']);
                     $('table').append(tr);
                 }
+                console.log(total);
+                console.log(attempts);
+                  if($('table tr').length>2){
+                  console.log("I hid a thing!");
+                 $("tr:eq(1)").remove();
+
+  }
             });
         });
+
     </script>
 
 <!-- Optional JavaScript -->

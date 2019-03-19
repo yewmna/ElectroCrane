@@ -13,8 +13,7 @@ p{
   margin-bottom: 2rem;
 }
 
-@media only screen and (max-width: 813px) {
-    a#play{
+ a#play{
       display: inline-block;
           text-decoration: none;
 
@@ -43,14 +42,6 @@ a#play:active {
     margin-bottom: -6px;
     width: 186px;
     padding: 16px;
-}
-    a#track{
-        display:none;
-    }
-}
-
-#play{
-   display:none;
 }
 
 #track,

@@ -47,20 +47,46 @@ function setup() {
 }
 
 var timeout = setInterval(passVal, 50);    
-
+var prev_curr=0;
+var prev_mf=0;
 function passVal(){
 
   if(inData){
     if(inData<129){
     current = mappy(inData, 1, 128, 0, 150);
-    document.getElementById("current").innerHTML = Math.floor(current) + "mA";
+    if(abs(prev_curr-current)<5){
+     document.getElementById("current").innerHTML = Math.floor(prev_curr) + "mA"; 
+     prev_curr = prev_curr;
     }else{
-    magnetic_field = inData;//change this later
-    magnetic_field = mappy(inData, 129, 255, 0, 1000);
-    if (magnetic_field<100){
-      magnetic_field=0;
+      document.getElementById("current").innerHTML = Math.floor(current) + "mA";
+      prev_curr = current;
     }
-    document.getElementById("mf").innerHTML = Math.floor(magnetic_field)+"G";
+    if (current<5){
+      document.getElementById("mf").innerHTML = "0G";
+      document.getElementById("current").innerHTML = "0mA";
+    }
+    }
+
+    else{
+        if (current<5){
+      document.getElementById("mf").innerHTML = "0G";
+    }
+    magnetic_field = inData;//change this later
+    magnetic_field = mappy(inData, 120, 200, 0, 500);
+
+    if (magnetic_field<20){
+      magnetic_field=0;
+      document.getElementById("mf").innerHTML = Math.floor(magnetic_field)+"G";
+    }else{
+          if(abs(prev_mf-magnetic_field)<10){
+     document.getElementById("mf").innerHTML = Math.floor(prev_mf) + "G"; 
+     prev_mf = prev_mf;
+    }else{
+      document.getElementById("mf").innerHTML = Math.floor(magnetic_field) + "G";
+      prev_mf = magnetic_field;
+    }
+
+    }
      }
 
            $.ajax({
@@ -69,9 +95,7 @@ function passVal(){
   ContentType: 'application/json',
   data: {'current': Math.floor(current),'magnetic_field': Math.floor(magnetic_field)}
 }).done(function(response){
-  console.log("updated!");
 }).fail(function(jqXHR, textStatus, errorThrown){
-  console.log("slow!");
 });
  }
 
@@ -115,7 +139,8 @@ function serialEvent() {
 
 function serialError(err) {
   print('Something went wrong with the serial port. ' + err);
-  portName = "/dev/cu.usbmodem14301";
+  
+  portName = "/dev/cu.usbmodem1431";
   $("#not-tracking").css("display","block");
     $("#tracking").css("display","none");
 }

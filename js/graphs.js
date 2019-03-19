@@ -17,10 +17,17 @@ window.onload = function() {
           type: 'GET',
 
         }).done(function(response){
-            try{
+            if(!$.trim(response)){
+            coils_array = ['0'];
+            volts_array = ['0'];
+            length_array = ['0'];
+            paperclips_array = ['0'];
+            trials_array = ['0'];
+
+            }else{
+                          try{
         var parsed = jQuery.parseJSON(JSON.stringify(response));
        coils_array = parsed.map(e => e.coils);
-            console.log(coils_array);
             volts_array = parsed.map(e => e.current);
             length_array = parsed.map(e => e.length);
             paperclips_array = parsed.map(e => e.paperclips);
@@ -29,14 +36,17 @@ window.onload = function() {
             }catch{
          var parsed = JSON.parse(response);
        coils_array = parsed.map(e => e.coils);
-            console.log(coils_array);
             volts_array = parsed.map(e => e.current);
             length_array = parsed.map(e => e.length);
             paperclips_array = parsed.map(e => e.paperclips);
             trials_array = parsed.map(e => e.trial);
 
-
             }
+            }
+
+
+  
+
 
             //coils
 var myChart = new Chart(ctx, {
@@ -70,7 +80,8 @@ var myChart = new Chart(ctx, {
         legend:{
              labels: {
                   fontFamily: "Montserrat"
-            }
+            },
+            display: false,
 
         },
         scales: {
@@ -78,14 +89,24 @@ var myChart = new Chart(ctx, {
                 ticks: {
                     beginAtZero:true,
                         fontFamily: "Montserrat"
-                }
+                },
+                scaleLabel: {
+        display: true,
+        labelString: 'Coils & Paperclips',
+        fontFamily: "Montserrat"
+      }
             }],
             xAxes: [{
                 ticks: {
                     beginAtZero:true,
                         fontFamily: "Montserrat"
 
-                }
+                },
+                               scaleLabel: {
+        display: true,
+        labelString: 'Trials',
+        fontFamily: "Montserrat"
+      }
             }]
         },
          title: {
@@ -132,7 +153,9 @@ var myChart2 = new Chart(ctx2, {
         legend:{
              labels: {
                   fontFamily: "Montserrat"
-            }
+            },
+              display: false,
+              useLineStyle: true,
 
         },
         scales: {
@@ -140,84 +163,24 @@ var myChart2 = new Chart(ctx2, {
                 ticks: {
                     beginAtZero:true,
                         fontFamily: "Montserrat"
-                }
+                },
+                               scaleLabel: {
+        display: true,
+        labelString: 'Current & Paperclips',
+        fontFamily: "Montserrat"
+      }
             }],
             xAxes: [{
                 ticks: {
                     beginAtZero:true,
                         fontFamily: "Montserrat"
 
-                }
-            }]
-        },
-         title: {
-            display: false,
-            text: 'Current & Paperclips',
-            fontFamily: "Montserrat"
-        },
-    }
-});
-
-//coils
-var myChart3 = new Chart(ctx3, {
-    type: 'line',
-    data: {
-        labels: trials_array,
-        datasets: [{
-            label: 'Paperclips',
-            data: paperclips_array,
-            backgroundColor: [
-                'rgba(255, 99, 132, 0)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)'
-            ],
-            borderWidth: 3
-        },
-        {
-            label: 'Current',
-            data: volts_array,
-            backgroundColor: [
-                'rgba(255, 99, 132, 0)',
-            ],
-            borderColor: [
-                'rgba(54, 162, 235,1)',
-            ],
-            borderWidth: 3
-        },
-        {
-            label: 'Coils',
-            data: coils_array,
-            backgroundColor: [
-                'rgba(255, 220, 0, 0)',
-            ],
-            borderColor: [
-                'rgba(255, 220, 0, 1)',
-            ],
-            borderWidth: 3
-        },
-        ]
-    },
-    options: {
-        legend:{
-             labels: {
-                  fontFamily: "Montserrat"
-            }
-
-        },
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true,
-                        fontFamily: "Montserrat"
-                }
-            }],
-            xAxes: [{
-                ticks: {
-                    beginAtZero:true,
-                        fontFamily: "Montserrat"
-
-                }
+                },
+                               scaleLabel: {
+        display: true,
+        labelString: 'Trials',
+        fontFamily: "Montserrat"
+      }
             }]
         },
          title: {
