@@ -15,12 +15,16 @@
 
 
     if($magentic_field==null && $current ==null){
+    $magnetic_field = 0;
+ $current = 0;
+$readings = array($current, $magentic_field);
+      saveJSON($readings);
     }else{
       if($magnetic_field==null){
-        $magnetic_field = $old_mf;
+        $magnetic_field = 0;
       }
       if($current == null){
-        $current = $old_current;
+        $current = 0;
       }
       $readings = array($current, $magentic_field);
       saveJSON($readings);

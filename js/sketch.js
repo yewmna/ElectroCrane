@@ -49,44 +49,56 @@ function setup() {
 var timeout = setInterval(passVal, 50);    
 var prev_curr=0;
 var prev_mf=0;
-function passVal(){
 
+function passVal(){
+   if (current<5){
+      document.getElementById("mf").innerHTML = "0G";
+      document.getElementById("current").innerHTML = "0mA";
+      magnetic_field=0;
+      current = 0;
+    }
   if(inData){
-    if(inData<129){
+    if(inData<129){ //Current
     current = mappy(inData, 1, 128, 0, 150);
     if(abs(prev_curr-current)<5){
      document.getElementById("current").innerHTML = Math.floor(prev_curr) + "mA"; 
      prev_curr = prev_curr;
-    }else{
+     current = prev_curr;
+    }
+    else if (current<5){
+      document.getElementById("mf").innerHTML = "0G";
+      document.getElementById("current").innerHTML = "0mA";
+      magnetic_field=0;
+      current = 0;
+    }
+    else{
       document.getElementById("current").innerHTML = Math.floor(current) + "mA";
       prev_curr = current;
     }
+    }
+    else{ //MF
+        magnetic_field = inData;//change this later
+        magnetic_field = mappy(inData, 120, 200, 0, 500);
+
     if (current<5){
       document.getElementById("mf").innerHTML = "0G";
       document.getElementById("current").innerHTML = "0mA";
-    }
-    }
-
-    else{
-        if (current<5){
-      document.getElementById("mf").innerHTML = "0G";
-    }
-    magnetic_field = inData;//change this later
-    magnetic_field = mappy(inData, 120, 200, 0, 500);
-
-    if (magnetic_field<20){
+      magnetic_field=0;
+      current = 0;
+    }else if (magnetic_field<20){
       magnetic_field=0;
       document.getElementById("mf").innerHTML = Math.floor(magnetic_field)+"G";
-    }else{
-          if(abs(prev_mf-magnetic_field)<10){
-     document.getElementById("mf").innerHTML = Math.floor(prev_mf) + "G"; 
-     prev_mf = prev_mf;
+    }
+    else if(abs(prev_mf-magnetic_field)<10){
+      document.getElementById("mf").innerHTML = Math.floor(prev_mf) + "G"; 
+      magnetic_field = prev_mf;
+      prev_mf = prev_mf;
     }else{
       document.getElementById("mf").innerHTML = Math.floor(magnetic_field) + "G";
       prev_mf = magnetic_field;
     }
 
-    }
+    
      }
 
            $.ajax({
@@ -149,7 +161,7 @@ function portClose() {
   print('The serial port closed.');
   $("#not-tracking").css("display","block");
     $("#tracking").css("display","none");
-      serial.open(portName);              // open a serial port
+      serial.open("portName");              // open a serial port
 
 }
 

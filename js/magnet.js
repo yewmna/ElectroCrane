@@ -285,7 +285,7 @@ catch(error){
            if (typeof reading_2 == 'undefined'){
                 document.getElementById("magneticfield_value").innerHTML = "0G";
             }else{
-            size=mappy(reading_2,0,1000,0,200);
+            size=mappy(reading_2,0,500,0,200);
             mRadius = size;
             var cat;
             if(size ==0){

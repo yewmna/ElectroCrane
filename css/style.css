@@ -175,8 +175,13 @@ canvas #c {
     font-size: 3em;
     padding-bottom: 20px;
     font-weight: 700;
-    margin-left: 32px;
+    margin-left: 4px;
 }
+
+#magneticfield_cat{
+    margin-left:0px;
+}
+
 
 #mytext {
     position: absolute;
@@ -190,16 +195,16 @@ canvas #c {
     font-size: 3em;
     padding-bottom: 20px;
         font-weight: 700;
-            padding-left: 80px;
+            padding-left: 40px;
 }
 
 #remaining{
       color: #302e1f;
     font-family: 'Montserrat', sans-serif;
     z-index: 9999;
-    font-size: 1.4em;
+    font-size: 1em;
     padding-bottom: 20px;
-    font-weight: 300;
+    font-weight: 500;
 }
 
 div#lookatthetime {
@@ -213,9 +218,10 @@ div#lookatthetime {
     color: #302e1f;
     font-family: 'Montserrat', sans-serif;
     z-index: 9999;
-    font-size: 1.4em;
+    font-size: 1em;
     padding-bottom: 20px;
-    font-weight: 300;
+    font-weight: 500;
+    margin-left:40px;
 
 }
 
