@@ -67,10 +67,17 @@ background: rgba(227, 90, 90, 0.1);
       margin-top: -15px;
 }
 div#resy {
-    padding-top: 15px;
+    padding-top: 30px;
+
 }
 
-
+ html,
+ body {
+   height: 100%;
+ }
+ body {
+   overflow-y: scroll;
+ }
 
 </style>
   </head>
@@ -102,12 +109,13 @@ div#resy {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
+function getIframeDocHeight() {
+    'use strict';
 
-
-$(document).ready(function(){
-var iframe = document.getElementById('experiment');
-      var header = $('.alert');
-var range = 100;
+    var iframeDocHeight = document.getElementById('experiment').contentWindow.document.getElementsByTagName('body')[0].scrollHeight;
+    var iframe = document.getElementById('experiment');
+var header = $('#not-tracking');
+var range = 50;
 iframe.contentDocument.addEventListener('scroll', function(event) {
    var scrollTop = $(this).scrollTop(),
       height = header.outerHeight(),
@@ -122,8 +130,10 @@ iframe.contentDocument.addEventListener('scroll', function(event) {
     header.css({ 'opacity': 0 });
   }
 }, false);
+    return console.log(iframeDocHeight);
+}
 
-});
+window.onload = getIframeDocHeight;
 
 
 

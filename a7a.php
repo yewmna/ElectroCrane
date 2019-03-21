@@ -4,9 +4,10 @@
 
 <?php
 if(isset($_POST['submit'])) {
- // header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
-//header("Pragma: no-cache"); // HTTP 1.0.
-//header("Expires: 0");
+ header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
+header("Pragma: no-cache"); // HTTP 1.0.
+header("Expires: 0");
+date_default_timezone_set('America/Los_Angeles');
 
     $additionalArray = array(
     'trial' => $_POST['trial'],
@@ -48,20 +49,18 @@ $( document ).ready(function() {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="css/monts.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 
 <!--My CSS-->
     <link rel="stylesheet" href="css/style.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
 
 
 <!--Serial connection-->
     <script src ="js/jquery-3.3.1.min.js"></script>
-    <script src="js/p5.min.js"></script>
-    <script src="js/p5.dom.min.js"></script>
-    <script src="js/p5.sound.min.js"></script>
-    <script src="js/p5.serialport.js"></script>
+
     <title>ElectroCrane</title>
 <style>
  body{
@@ -164,7 +163,8 @@ padding-top: 19px;
     margin-top: 70px;
     margin-left: 8px;
     float: left;
-    margin-right: 13px;
+        margin-right: -6px;
+
 }
 
     #insa,
@@ -272,10 +272,10 @@ background: #2196F3;
     border-top: 0px !important;
 }
 .col-10 {
-    margin-left: 23%;
-    -ms-flex: 0 0 82.333333%;
-    flex: 0 0 76.333333%;
-    max-width: 76.333333%;
+    margin-left: 22%;
+    -ms-flex: 0 0 74.333333%;
+    flex: 0 0 74.333333%;
+    max-width: 74.333333%;
 }
 
 .col-2 {
@@ -356,10 +356,10 @@ span.g-l {
               <input id="track" type="submit" name="submit" id="submit" action="" value="Record" >
               <span id="recorded" style="display:none"><i class="fas fa-check"></i>Recorded</span>
 </form>          <div class="ins">
-      <button id="insa" data-toggle="modal" data-target="#instructionModal">?</button>
+      <button style="display:none" id="insa" data-toggle="modal" data-target="#instructionModal">?</button>
     </div>
     <div class="ins">
-      <button id="refresh"><i class="fas fa-redo-alt"></i></button>
+      <button id="refresh">↻</button>
     </div>
             </div>
 
@@ -411,16 +411,16 @@ span.g-l {
 <div class="col-6 ch">
   <h4>Coils & Paperclips</h4>
   <div class="cutom-labels">
-    <span class="g-l">Coils</span><img class="g-i" src="img/red.svg"/>
-    <span class="g-l">Paperclips</span><img class="g-i" src="img/blue.svg"/>
+    <span class="g-l">Coils</span><img class="g-i" src="img/blue.svg"/>
+    <span class="g-l">Paperclips</span><img class="g-i" src="img/red.svg"/>
   </div>
     <canvas id="myChart" width="400" height="250"></canvas>
 </div>
 <div class="col-6 ch">
   <h4>Current & Paperclips</h4>
     <div class="cutom-labels">
-    <span class="g-l">Current</span><img class="g-i" src="img/red.svg"/>
-    <span class="g-l">Paperclips</span><img class="g-i" src="img/blue.svg"/>
+    <span class="g-l">Current</span><img class="g-i" src="img/blue.svg"/>
+    <span class="g-l">Paperclips</span><img class="g-i" src="img/red.svg"/>
   </div>
     <canvas id="myChart2" width="400" height="250"></canvas>
 </div>
@@ -472,37 +472,21 @@ var rowCount = $('#myTable tr').length;
         });
 
     </script>
-     <script>
+    <script>
+ $('#refresh').click(function() {
+ $.ajax({
+  type: "POST",
+  url: "delete.php",
+  data: { name: "John" }
+}).done(function( msg ) {
+   window.location.href = window.location.href;
+});    
 
-$(document).ready(function(){
-  var header = $('#not-tracking');
-var range = 200;
-
-$(window).on('scroll', function () {
-$('#not-tracking').hide();  
-  var scrollTop = $(this).scrollTop(),
-      height = header.outerHeight(),
-      offset = height / 2,
-      calc = 1 - (scrollTop - offset + range) / range;
-
-  header.css({ 'opacity': calc });
-
-  if (calc > '1') {
-    header.css({ 'opacity': 1 });
-  } else if ( calc < '0' ) {
-    header.css({ 'opacity': 0 });
-  }
-  
-});
-});
-
-
-
-
-</script>
+    });
+    </script>
 
 <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body></html>
